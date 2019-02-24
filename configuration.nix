@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
+      ./laptop-configuration.nix
     ];
 
   system = {
@@ -22,26 +23,9 @@
     wget neovim git vivaldi chromium networkmanager_dmenu rxvt_unicode feh volumeicon
   ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "snowlt23-laptop"; # Define your hostname.
+  networking.hostName = "snowlt23-pc"; # Define your hostname.
   networking.networkmanager.enable = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  
-  # Bluetooth
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.extraConfig = "
-    [General]
-    Enable=Source,Sink,Media,Socket
-  ";
-  hardware.pulseaudio = {
-    enable = true;
-    package = pkgs.pulseaudioFull;
-    support32Bit = true;
-    extraModules = [ pkgs.pulseaudio-modules-bt ];
-  };
 
   # Select internationalisation properties.
   i18n = {
