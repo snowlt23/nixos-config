@@ -20,8 +20,9 @@
 
   # Package list
   environment.systemPackages = with pkgs; [
-    wget neovim git vivaldi chromium networkmanager_dmenu rxvt_unicode feh volumeicon
+    wget neovim fish git gnumake gcc vivaldi chromium networkmanager_dmenu rxvt_unicode feh volumeicon
   ];
+  programs.fish.enable = true;
 
   networking.hostName = "snowlt23-pc"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -164,6 +165,7 @@
 
   # user
   users.extraUsers.snowlt23 = {
+    shell = pkgs.fish;
     isNormalUser = true;
     createHome = true;
     uid = 1000;
