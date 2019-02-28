@@ -39,6 +39,12 @@ bindsym $mod+p exec "i3-msg 'floating toggle; sticky toggle; resize shrink width
 # kill focused window
 bindsym $mod+q kill
 
+# Desktop screenshot
+bindsym Print exec "flameshot full -p ~/Pictures"
+# Choose window
+bindsym $mod+Print exec "flameshot gui -p ~/Pictures"
+# Selection screenshot
+
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications

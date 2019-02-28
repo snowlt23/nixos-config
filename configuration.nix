@@ -20,7 +20,7 @@
 
   # Package list
   environment.systemPackages = with pkgs; [
-    wget neovim fish git gnumake gcc vivaldi chromium networkmanager_dmenu rxvt_unicode feh volumeicon
+    wget neovim fish git gnumake gcc vivaldi networkmanager_dmenu rxvt_unicode feh volumeicon flameshot
   ];
   programs.fish.enable = true;
 
