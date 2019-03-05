@@ -6,3 +6,6 @@ set expandtab
 set splitright
 set clipboard=unnamed
 set hls
+
+colorscheme molokai
+syntax on
