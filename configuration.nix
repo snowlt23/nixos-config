@@ -20,7 +20,7 @@
 
   # Package list
   environment.systemPackages = with pkgs; [
-    wget neovim git gnumake gcc vivaldi networkmanager_dmenu rxvt_unicode feh volumeicon flameshot
+    wget neovim git gnumake gcc vivaldi networkmanager_dmenu rxvt_unicode feh volnoti pamixer flameshot
   ];
 
   networking.hostName = "snowlt23-pc"; # Define your hostname.
@@ -50,9 +50,9 @@
     libinput.tappingDragLock = false;
 
     displayManager.sessionCommands =  ''
-       volumeicon &
-       feh --bg-scale /home/snowlt23/Pictures/wallpaper.png &
-       xrdb "${pkgs.writeText  "xrdb.conf" ''
+      volnoti
+      feh --bg-scale /home/snowlt23/Pictures/wallpaper.png &
+      xrdb "${pkgs.writeText  "xrdb.conf" ''
           URxvt.font:                 xft:Dejavu Sans Mono for Powerline:size=10
           XTerm*faceName:             xft:Dejavu Sans Mono for Powerline:size=10
           XTerm*utf8:                 2

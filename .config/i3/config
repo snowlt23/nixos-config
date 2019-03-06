@@ -43,7 +43,11 @@ bindsym $mod+q kill
 bindsym Print exec "flameshot full -p ~/Pictures"
 # Choose window
 bindsym $mod+Print exec "flameshot gui -p ~/Pictures"
-# Selection screenshot
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec ~/nixos-config/scripts/vctl.sh -i 5
+bindsym XF86AudioLowerVolume exec ~/nixos-config/scripts/vctl.sh -d 5
+bindsym XF86AudioMute exec ~/nixos-config/scripts/vctl.sh -t
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
