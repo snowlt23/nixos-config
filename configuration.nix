@@ -2,11 +2,11 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ stdenv, config, pkgs, ... }:
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       /etc/nixos/hardware-configuration.nix
       ./laptop-configuration.nix
     ];
@@ -20,12 +20,12 @@
 
   # Package list
   environment.systemPackages = with pkgs; [
-    wget neovim git gnumake gcc vivaldi networkmanager_dmenu rxvt_unicode feh volnoti pamixer flameshot
+    wget neovim git gnumake gcc firefox networkmanager_dmenu rxvt_unicode feh volnoti pamixer flameshot fira-code compton
   ];
 
-  networking.hostName = "snowlt23-pc"; # Define your hostname.
+  networking.hostName = "snowlt23-pc";
   networking.networkmanager.enable = true;
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # networking.wireless.enable = true;
 
   # Select internationalisation properties.
   i18n = {
@@ -50,11 +50,12 @@
     libinput.tappingDragLock = false;
 
     displayManager.sessionCommands =  ''
+      compton &
       volnoti
       feh --bg-scale /home/snowlt23/Pictures/wallpaper.png &
       xrdb "${pkgs.writeText  "xrdb.conf" ''
-          URxvt.font:                 xft:Dejavu Sans Mono for Powerline:size=10
-          XTerm*faceName:             xft:Dejavu Sans Mono for Powerline:size=10
+          URxvt.font:                 xft:Source Code Pro for Powerline:size=10
+          Xterm*faceName:             xft:Source Code Pro for Powerline:size=10
           XTerm*utf8:                 2
           URxvt.letterSpace:          0
           URxvt.background:           #121214
@@ -106,7 +107,7 @@
           URxvt.colorUL:              #AED210
           URxvt.perl-ext:             default,url-select
           URxvt.keysym.M-u:           perl:url-select:select_next
-          URxvt.url-select.launcher:  /usr/bin/firefox -new-tab
+          URxvt.url-select.launcher:  /usr/bin/firefox
           URxvt.url-select.underline: true
           Xft*dpi:                    96
           Xft*antialias:              true
@@ -175,4 +176,10 @@
     enabled  = "fcitx";
     fcitx.engines = with pkgs.fcitx-engines; [ mozc ];
   };
+
+  # steam
+  users.extraUsers.snowlt23.packages = [
+    pkgs.steam
+  ];
+  hardware.opengl.driSupport32Bit = true;
 }
