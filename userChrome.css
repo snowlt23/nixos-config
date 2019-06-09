@@ -1,0 +1,32 @@
+#tabbrowser-tabs .tabbrowser-tab .tab-close-button {
+    display: none !important;
+}
+.tabs-newtab-button {
+    display: none !important;
+}
+#tabbrowser-tabs {
+    max-height: 18px !important;
+    min-height: 18px !important;
+}
+.tabbrowser-tab {
+    max-width: 100% !important;
+    min-width: 100% !important;
+    max-height: 18px !important;
+    min-height: 18px !important;
+}
+.tab-content {
+    max-height: 18px !important;
+    min-height: 18px !important;
+}
+.tabbrowser-tab[selected] .tab-line {
+    display: none !important;
+}
+
+#nav-bar {
+    max-height: 24px !important;
+    min-height: 24px !important;
+}
+#back-button {
+    max-height: 24px !important;
+    min-height: 24px !important;
+}

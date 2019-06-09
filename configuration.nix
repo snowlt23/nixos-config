@@ -20,7 +20,7 @@
 
   # Package list
   environment.systemPackages = with pkgs; [
-    wget neovim git gnumake gcc firefox networkmanager_dmenu rxvt_unicode feh volnoti pamixer flameshot fira-code compton
+    wget neovim git gnumake gcc firefox brave networkmanager_dmenu rxvt_unicode feh volnoti pamixer flameshot fira-code compton
   ];
 
   networking.hostName = "snowlt23-pc";
@@ -174,7 +174,7 @@
   # input method for JP
   i18n.inputMethod = {
     enabled  = "fcitx";
-    fcitx.engines = with pkgs.fcitx-engines; [ mozc ];
+    fcitx.engines = with pkgs.fcitx-engines; [ skk ];
   };
 
   # steam
