@@ -20,7 +20,12 @@
 
   # Package list
   environment.systemPackages = with pkgs; [
-    wget neovim git gnumake gcc firefox brave networkmanager_dmenu rxvt_unicode feh volnoti pamixer flameshot fira-code compton
+    wget xsel unar
+    i3blocks acpi pamixer flameshot compton feh libnotify notify-osd
+    networkmanager_dmenu
+    python3
+    neovim git gnumake gcc rxvt_unicode
+    dropbox firefox brave
   ];
 
   networking.hostName = "snowlt23-pc";
@@ -51,11 +56,11 @@
 
     displayManager.sessionCommands =  ''
       compton &
-      volnoti
       feh --bg-scale /home/snowlt23/Pictures/wallpaper.png &
+      dropbox &
       xrdb "${pkgs.writeText  "xrdb.conf" ''
-          URxvt.font:                 xft:Source Code Pro for Powerline:size=10
-          Xterm*faceName:             xft:Source Code Pro for Powerline:size=10
+          URxvt.font:                 xft:Hack:Regular:antialias=true:size=9
+          Xterm*faceName:             xft:Hack:Regular:antialias=true:size=9
           XTerm*utf8:                 2
           URxvt.letterSpace:          0
           URxvt.background:           #121214
@@ -132,14 +137,20 @@
     '';
   };
 
-  # Fonts
   fonts = {
-    fonts = with pkgs; [ 
+    enableFontDir = true;
+    enableGhostscriptFonts = true;
+    fonts = with pkgs; [
+      corefonts
+      inconsolata
+      dejavu_fonts
+      font-awesome-ttf
+      ubuntu_font_family
+      source-code-pro
+      source-sans-pro
+      source-serif-pro
+      hack-font
       ipafont
-      powerline-fonts
-      baekmuk-ttf
-      kochi-substitute
-      carlito
     ];
 
     fontconfig = { 
@@ -173,8 +184,7 @@
 
   # input method for JP
   i18n.inputMethod = {
-    enabled  = "fcitx";
-    fcitx.engines = with pkgs.fcitx-engines; [ skk ];
+    enabled  = "uim";
   };
 
   # steam

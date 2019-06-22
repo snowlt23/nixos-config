@@ -1,0 +1,36 @@
+[ssid]
+label=
+command=echo "$(nmcli dev show wlp1s0 | grep CONNECTION | cut -d " " -f 2- | xargs)"
+color=#d33682
+interval=5
+
+# [MOC]
+# label=
+# command=~/.config/i3blocks/mocp.sh
+# instance=40
+# signal=3
+# interval=3
+
+[Music]
+label=
+command=~/.config/i3blocks/playing.py --layout t-a-A-p
+separator_block_width=13
+interval=5
+color=#EEFF66
+
+[volume]
+label=
+command=~/.config/i3blocks/volume
+interval=5
+signal=1
+
+[battery]
+command=~/.config/i3blocks/battery2
+markup=pango
+interval=10
+
+[time]
+label=
+command=date +'%m/%d %H:%M'
+color=#8fa1b3
+interval=5
