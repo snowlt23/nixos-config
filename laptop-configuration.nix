@@ -10,10 +10,12 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.extraConfig = "
     [General]
-    Enable=Source,Sink,Media,Socket
+    Enable=Source,Sink,Control,Media,Socket
   ";
   hardware.pulseaudio = {
     enable = true;
+    extraModules = [ pkgs.pulseaudio-modules-bt ];
     package = pkgs.pulseaudioFull;
+    configFile = pkgs.writeText "default.pa" (builtins.readFile ./default.pa);
   };
 }

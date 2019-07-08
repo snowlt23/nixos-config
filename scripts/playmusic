@@ -1,2 +1,2 @@
 #!/bin/sh
-~/nixos-config/gpmdp/result/bin/gpmdp-env
+~/nixos-config/gpmdp/result/bin/gpmdp-env $@

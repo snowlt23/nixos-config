@@ -24,7 +24,8 @@
     i3blocks acpi pamixer flameshot compton feh libnotify notify-osd
     networkmanager_dmenu
     python3
-    neovim git gnumake gcc rxvt_unicode
+    neovim emacs git gnumake gcc
+    tmux peco python37Packages.powerline rxvt_unicode
     dropbox firefox brave
   ];
 
@@ -192,4 +193,11 @@
     pkgs.steam
   ];
   hardware.opengl.driSupport32Bit = true;
+  hardware.pulseaudio.support32Bit = true;
+  hardware.steam-hardware.enable = true;
+
+  networking.firewall = {
+     allowedTCPPorts = [ 27036 27037 ];
+     allowedUDPPorts = [ 27031 27036 ];
+  };
 }

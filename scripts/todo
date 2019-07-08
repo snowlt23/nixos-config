@@ -1,2 +1,2 @@
 #!/bin/sh
-nvim ~/Dropbox/todo.txt
+nvim ~/Dropbox/todo.adoc
