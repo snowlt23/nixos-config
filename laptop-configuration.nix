@@ -16,6 +16,5 @@
     enable = true;
     extraModules = [ pkgs.pulseaudio-modules-bt ];
     package = pkgs.pulseaudioFull;
-    configFile = pkgs.writeText "default.pa" (builtins.readFile ./default.pa);
   };
 }

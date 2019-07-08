@@ -1,0 +1,3 @@
+#!/bin/sh
+ID="30:C0:1B:1A:E1:CC"
+echo "connect $ID" | bluetoothctl
