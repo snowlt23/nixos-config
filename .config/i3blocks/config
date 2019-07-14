@@ -1,7 +1,7 @@
 [ssid]
 label=
 command=echo "$(nmcli dev show wlp1s0 | grep CONNECTION | cut -d " " -f 2- | xargs)"
-color=#d33682
+color=#e7e7eb
 interval=5
 
 # [MOC]
@@ -16,7 +16,7 @@ label=
 command=~/.config/i3blocks/playing.py --layout t-a-A-p
 separator_block_width=13
 interval=5
-color=#EEFF66
+color=#e7e7eb
 
 [volume]
 label=
@@ -32,5 +32,5 @@ interval=10
 [time]
 label=
 command=date +'%m/%d %H:%M'
-color=#8fa1b3
+color=#e7e7eb
 interval=5

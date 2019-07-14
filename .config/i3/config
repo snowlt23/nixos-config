@@ -4,9 +4,17 @@ floating_modifier $mod
 # Font
 font pango:Hack Regular 8
 
+# Style
+for_window [class="^.*"] border pixel 2
+gaps inner 5
+gaps outer 5
+smart_gaps on
+smart_borders on
+
 # Applications
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec $HOME/.config/i3/i3_shell.sh
 bindsym $mod+t exec MOZ_USE_XINPUT2=1 firefox
+# bindsym $mod+t exec brave
 # Picture in Picture
 bindsym $mod+p exec "i3-msg 'floating toggle; sticky toggle; resize shrink width 10000px; resize grow width 384px; resize shrink height 10000px; resize grow height 216px; move position 0px 0px;'"
 
@@ -145,36 +153,53 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+set $lpurple #a69abd99
+set $dpurple #432f2f99
+set $twhite #ffffff99
+
 bar {
   status_command i3blocks
+  i3bar_command i3bar -t
+
   font pango:Hack Regular 10
-  mode dock
-  position top
-  separator_symbol " │ "
-  workspace_buttons yes
-  strip_workspace_numbers yes
-  binding_mode_indicator yes
-  tray_output primary
-
   colors {
-    background #2B303B
-    statusline #FFFFFF
-    separator  #6C6C6C
-
-    focused_workspace  #4C7899 #285577 #FFFFFF
-    active_workspace   #333333 #222222 #FFFFFF
-    inactive_workspace #333333 #222222 #888888
-    urgent_workspace   #2F343A #900000 #FFFFFF
-    binding_mode       #2F343A #900000 #FFFFFF
+    background $dpurple
+    focused_workspace $dpurple $lpurple $twhite
+		active_workspace $dpurple $dpurple $twhite
+		inactive_workspace $dpurple $dpurple $twhite
   }
 }
+
+# bar {
+#   status_command i3blocks
+#   font pango:Hack Regular 10
+#   mode dock
+#   position bottom
+#   separator_symbol " │ "
+#   workspace_buttons yes
+#   strip_workspace_numbers yes
+#   binding_mode_indicator yes
+#   tray_output primary
+# 
+#   colors {
+#     background #2B303B
+#     statusline #FFFFFF
+#     separator  #6C6C6C
+# 
+#     focused_workspace  #4C7899 #285577 #FFFFFF
+#     active_workspace   #333333 #222222 #FFFFFF
+#     inactive_workspace #333333 #222222 #888888
+#     urgent_workspace   #2F343A #900000 #FFFFFF
+#     binding_mode       #2F343A #900000 #FFFFFF
+#   }
+# }
 
 # Colors
 
 # class                 border  bground text    indicator child_border
-client.focused          #5C515F #5C515F #FFFFFF #5C515F   #5C515F
-client.focused_inactive #2B303B #2B303B #FFFFFF #2B303B   #2B303B
-client.unfocused        #2B303B #2B303B #FFFFFF #2B303B   #2B303B
-client.urgent           #900000 #900000 #FFFFFF #900000   #900000
-client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
+client.focused          $lpurple $lpurple $twhite $lpurple $lpurple
+client.focused_inactive $dpurple $dpurple $twhite $dpurple   $dpurple
+client.unfocused        $dpurple $dpurple $twhite $dpurple   $dpurple
+client.urgent           #900000 #900000 $twhite #900000   #900000
+client.placeholder      #000000 #0C0C0C $twhite #000000   #0C0C0C
 client.background       #FFFFFF

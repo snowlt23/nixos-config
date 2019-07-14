@@ -32,7 +32,7 @@ function print_volume() {
 function main() {
   print_volume
 
-  declare -Ar colors=( ['true']='#434447' ['false']='#8fa1b3' )
+  declare -Ar colors=( ['true']='#9790a4' ['false']='#e7e7eb' )
   echo "${colors[$(get_muted)]}"
 }
 

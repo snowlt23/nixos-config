@@ -6,27 +6,46 @@
 
 {
   imports =
+    (if (builtins.pathExists /mnt/etc/nixos/hardware-configuration.nix) then [ /mnt/etc/nixos/hardware-configuration.nix ]
+     else [ /etc/nixos/hardware-configuration.nix ]) ++
     [
-      /etc/nixos/hardware-configuration.nix
       ./laptop-configuration.nix
     ];
 
   system = {
-    stateVersion = "18.09";
+    stateVersion = "19.03";
   };
 
   # Common
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    packageOverrides = pkgs: rec {
+      # Override bluez for a2dp bug at reconnecting.
+      bluez = pkgs.stdenv.lib.overrideDerivation pkgs.bluez (oldAttrs: {
+        name = "bluez-git";
+        src = pkgs.fetchgit {
+          url = git://git.kernel.org/pub/scm/bluetooth/bluez.git;
+          rev = "b6960209ee3e0166353060deb38eb7827a092ed3";
+          sha256 = "1llz9imdws5fkfwj7h7awncwmaax0zl58lkmil7s9b7w0191273j";
+        };
+        buildInputs = oldAttrs.buildInputs ++ [ pkgs.automake pkgs.autoconf pkgs.libtool ];
+        patches = [];
+        preConfigure = ''
+          ./bootstrap
+        '';
+      });
+    };
+  };
 
   # Package list
   environment.systemPackages = with pkgs; [
-    wget xsel unar
-    i3blocks acpi pamixer flameshot compton feh libnotify notify-osd
+    wget xsel unar ranger
+    i3blocks acpi pamixer flameshot compton feh libnotify notify-osd-customizable
     networkmanager_dmenu
     python3
-    neovim emacs git gnumake gcc
-    tmux peco python37Packages.powerline rxvt_unicode
-    dropbox firefox brave
+    neovim git gnumake gcc
+    rxvt_unicode
+    dropbox firefox
   ];
 
   networking.hostName = "snowlt23-pc";
@@ -51,90 +70,14 @@
       xterm.enable = false;
     };
     windowManager.i3.enable = true;
+    windowManager.i3.package = pkgs.i3-gaps;
     libinput.enable = true;
     libinput.tapping = false;
     libinput.tappingDragLock = false;
 
     displayManager.sessionCommands =  ''
-      compton &
-      feh --bg-scale /home/snowlt23/Pictures/wallpaper.png &
-      dropbox &
-      xrdb "${pkgs.writeText  "xrdb.conf" ''
-          URxvt.font:                 xft:Hack:Regular:antialias=true:size=9
-          Xterm*faceName:             xft:Hack:Regular:antialias=true:size=9
-          XTerm*utf8:                 2
-          URxvt.letterSpace:          0
-          URxvt.background:           #121214
-          URxvt.foreground:           #FFFFFF
-          XTerm*background:           #121212
-          XTerm*foreground:           #FFFFFF
-          ! black
-          URxvt.color0  :             #2E3436
-          URxvt.color8  :             #555753
-          XTerm*color0  :             #2E3436
-          XTerm*color8  :             #555753
-          ! red
-          URxvt.color1  :             #CC0000
-          URxvt.color9  :             #EF2929
-          XTerm*color1  :             #CC0000
-          XTerm*color9  :             #EF2929
-          ! green
-          URxvt.color2  :             #4E9A06
-          URxvt.color10 :             #8AE234
-          XTerm*color2  :             #4E9A06
-          XTerm*color10 :             #8AE234
-          ! yellow
-          URxvt.color3  :             #C4A000
-          URxvt.color11 :             #FCE94F
-          XTerm*color3  :             #C4A000
-          XTerm*color11 :             #FCE94F
-          ! blue
-          URxvt.color4  :             #3465A4
-          URxvt.color12 :             #729FCF
-          XTerm*color4  :             #3465A4
-          XTerm*color12 :             #729FCF
-          ! magenta
-          URxvt.color5  :             #75507B
-          URxvt.color13 :             #AD7FA8
-          XTerm*color5  :             #75507B
-          XTerm*color13 :             #AD7FA8
-          ! cyan
-          URxvt.color6  :             #06989A
-          URxvt.color14 :             #34E2E2
-          XTerm*color6  :             #06989A
-          XTerm*color14 :             #34E2E2
-          ! white
-          URxvt.color7  :             #D3D7CF
-          URxvt.color15 :             #EEEEEC
-          XTerm*color7  :             #D3D7CF
-          XTerm*color15 :             #EEEEEC
-          URxvt*saveLines:            32767
-          XTerm*saveLines:            32767
-          URxvt.colorUL:              #AED210
-          URxvt.perl-ext:             default,url-select
-          URxvt.keysym.M-u:           perl:url-select:select_next
-          URxvt.url-select.launcher:  /usr/bin/firefox
-          URxvt.url-select.underline: true
-          Xft*dpi:                    96
-          Xft*antialias:              true
-          Xft*hinting:                full
-          URxvt.scrollBar:            false
-          URxvt*scrollTtyKeypress:    true
-          URxvt*scrollTtyOutput:      false
-          URxvt*scrollWithBuffer:     false
-          URxvt*scrollstyle:          plain
-          URxvt*secondaryScroll:      true
-          Xft.autohint: 0
-          Xft.lcdfilter:  lcddefault
-          Xft.hintstyle:  hintfull
-          Xft.hinting: 1
-          Xft.antialias: 1 
-          ! transparent
-          URxvt*inheritPixmap: true
-          URxvt*.transparent: true
-          ! URxvt*.shading: 0 to 99 darkens, 101 to 200 lightens
-          URxvt*.shading: 10
-       ''}"
+      compton --config ~/.config/compton.conf --xrender-sync --xrender-sync-fence -b
+      feh --bg-center /home/snowlt23/Pictures/wallpaper.png &
     '';
   };
 
