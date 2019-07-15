@@ -42,10 +42,11 @@
     wget xsel unar ranger
     i3blocks acpi pamixer flameshot compton feh libnotify notify-osd-customizable
     networkmanager_dmenu
-    python3
+    python3 ruby
     neovim git gnumake gcc
     rxvt_unicode
     dropbox firefox
+    cmus cli-visualizer
   ];
 
   networking.hostName = "snowlt23-pc";

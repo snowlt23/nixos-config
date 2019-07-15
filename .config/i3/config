@@ -1,13 +1,15 @@
 set $mod Mod4
 floating_modifier $mod
 
+exec_always pkill compton; compton
+
 # Font
 font pango:Hack Regular 8
 
 # Style
-for_window [class="^.*"] border pixel 2
-gaps inner 5
-gaps outer 5
+for_window [class=".*"] border pixel 0
+gaps inner 8
+gaps outer 8
 smart_gaps on
 smart_borders on
 
@@ -153,6 +155,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# Colors
+
 set $lpurple #a69abd99
 set $dpurple #432f2f99
 set $twhite #ffffff99
@@ -169,32 +173,6 @@ bar {
 		inactive_workspace $dpurple $dpurple $twhite
   }
 }
-
-# bar {
-#   status_command i3blocks
-#   font pango:Hack Regular 10
-#   mode dock
-#   position bottom
-#   separator_symbol " │ "
-#   workspace_buttons yes
-#   strip_workspace_numbers yes
-#   binding_mode_indicator yes
-#   tray_output primary
-# 
-#   colors {
-#     background #2B303B
-#     statusline #FFFFFF
-#     separator  #6C6C6C
-# 
-#     focused_workspace  #4C7899 #285577 #FFFFFF
-#     active_workspace   #333333 #222222 #FFFFFF
-#     inactive_workspace #333333 #222222 #888888
-#     urgent_workspace   #2F343A #900000 #FFFFFF
-#     binding_mode       #2F343A #900000 #FFFFFF
-#   }
-# }
-
-# Colors
 
 # class                 border  bground text    indicator child_border
 client.focused          $lpurple $lpurple $twhite $lpurple $lpurple
