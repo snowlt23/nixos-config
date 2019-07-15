@@ -1,4 +1,4 @@
 # colors.override.terminal=false
 colors.scheme=rainbow
 visualizer.spectrum.bar.width=1
-visualizer.scaling.multiplier=1.5
+visualizer.scaling.multiplier=1.2
