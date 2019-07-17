@@ -8,8 +8,8 @@ font pango:Hack Regular 8
 
 # Style
 for_window [class=".*"] border pixel 0
-gaps inner 8
-gaps outer 8
+gaps inner 7
+gaps outer 7
 smart_gaps on
 smart_borders on
 

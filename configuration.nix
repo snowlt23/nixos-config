@@ -40,13 +40,14 @@
   # Package list
   environment.systemPackages = with pkgs; [
     wget xsel unar ranger
-    i3blocks acpi pamixer flameshot compton feh libnotify notify-osd-customizable
+    xmobar dmenu
+    acpi pamixer flameshot compton feh libnotify notify-osd-customizable
     networkmanager_dmenu
     python3 ruby
     neovim git gnumake gcc
     rxvt_unicode
-    dropbox firefox
-    cmus cli-visualizer
+    dropbox firefox luakit
+    cmus cli-visualizer google-play-music-desktop-player
   ];
 
   networking.hostName = "snowlt23-pc";
@@ -63,15 +64,23 @@
   # Set your time zone.
   time.timeZone = "Asia/Tokyo";
 
-  # i3wm
   services.xserver = {
     enable = true;
     desktopManager = {
       default = "none";
       xterm.enable = false;
     };
-    windowManager.i3.enable = true;
-    windowManager.i3.package = pkgs.i3-gaps;
+    windowManager.xmonad = {
+      enable = true;
+      enableContribAndExtras = true;
+      extraPackages = haskellPackages: [
+        haskellPackages.xmonad-contrib
+        haskellPackages.xmonad-extras
+        haskellPackages.xmonad
+      ];
+    };
+    # windowManager.i3.enable = true;
+    # windowManager.i3.package = pkgs.i3-gaps;
     libinput.enable = true;
     libinput.tapping = false;
     libinput.tappingDragLock = false;
