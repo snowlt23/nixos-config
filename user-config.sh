@@ -5,7 +5,10 @@ cp .bash_profile ~/.bash_profile
 cp .Xresources ~/.Xresources
 cp .tmux.conf ~/.tmux.conf
 cp .notify-osd ~/.notify-osd
-cp .xmonad/xmonad.hs ~/.xmonad/xmonad.hs
+
+rm -rf ~/.xmonad
+cp -r .xmonad ~/.xmonad
+
 cp -r .config/* ~/.config/
 cp .config/luakit/userconf.lua ~/.config/luakit/userconf.lua
 cp .config/luakit/theme.lua ~/.config/luakit/theme.lua

@@ -1,78 +1,75 @@
 {-# LANGUAGE FlexibleInstances, MultiParamTypeClasses #-}
 
-import XMonad hiding (focus)
+import XMonad
 
-import XMonad.Layout.TwoPane
 import XMonad.Layout.Tabbed
 import XMonad.Layout.OneBig
-import XMonad.Layout.Simplest
-import XMonad.Layout.Circle
 import XMonad.Layout.Combo
-import XMonad.Layout.Column
 import XMonad.Layout.PerWorkspace
-import XMonad.Layout.WindowNavigation
-import XMonad.Layout.SubLayouts
-import XMonad.Layout.TabBarDecoration
-import XMonad.Layout.BoringWindows
-
-import XMonad.Operations hiding (focus)
-import XMonad.Util.EZConfig
 import XMonad.Layout.Spacing
+import XMonad.Layout.Gaps
+
+import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageDocks
+import XMonad.Util.Run
+import XMonad.Util.EZConfig
 import XMonad.Hooks.FadeInactive
-import Control.Arrow ((***), second)
 
 import qualified XMonad.StackSet as W
 
-newtype Flip l a = Flip (l a) deriving (Show, Read)
+colorBlue      = "#868bae"
+colorGreen     = "#00d700"
+colorRed       = "#ff005f"
+colorGray      = "#666666"
+colorWhite     = "#bdbdbd"
+colorNormalbg  = "#1c1c1c"
+colorfg        = "#a8b6b8"
 
-instance LayoutClass l a => LayoutClass (Flip l) a where
-    runLayout (W.Workspace i (Flip l) ms) r = (map (second flipRect) *** fmap Flip)
-                                                `fmap` runLayout (W.Workspace i l ms) (flipRect r)
-                                         where screenWidth = fromIntegral $ rect_width r
-                                               flipRect (Rectangle rx ry rw rh) = Rectangle (screenWidth - rx - (fromIntegral rw)) ry rw rh
-    handleMessage (Flip l) = fmap (fmap Flip) . handleMessage l
-    description (Flip l) = "Flip "++ description l
-
-myLogHook :: X ()
-myLogHook = fadeInactiveLogHook fadeAmount
+fadeLogHook = fadeInactiveLogHook fadeAmount
     where fadeAmount = 0.9
 
-subTallLayout = windowNavigation
-              $ subTabbed
-              $ boringWindows
-              $ Flip
-              $ Tall 1 (10/100) (1/3)
-defaultLayout = simpleTabbed ||| subTallLayout
-layout = onWorkspace "Util" (TwoPane (10/100) (70/100))
-       $ onWorkspace "Web" simpleTabbed
-       $ onWorkspace "Dev" subTallLayout
-       $ onWorkspace "Work" subTallLayout
-       $ defaultLayout
+wsPP = xmobarPP { ppOrder           = \(ws:l:t:_)  -> [ws,t]
+                , ppCurrent         = xmobarColor colorRed     colorNormalbg . \s -> s
+                , ppUrgent          = xmobarColor colorGray    colorNormalbg . \s -> s
+                , ppVisible         = xmobarColor colorRed     colorNormalbg . \s -> s
+                , ppHidden          = xmobarColor colorGray    colorNormalbg . \s -> s
+                , ppHiddenNoWindows = xmobarColor colorGray    colorNormalbg . \s -> s
+                , ppTitle           = xmobarColor colorWhite     colorNormalbg
+                , ppOutput          = putStrLn
+                , ppWsSep           = " "
+                , ppSep             = "  "
+                }
+myLogHook h = composeAll [dynamicLogWithPP $ wsPP { ppOutput = hPutStrLn h }, fadeLogHook]
+
+defaultLayout = Tall 1 (10/100) (2/3)
+            ||| OneBig (3/4) (3/4)
+            ||| simpleTabbed
+
+myLayout = defaultLayout
 
 modm = mod4Mask
+myWsBar = "xmobar $HOME/.xmonad/xmobar.hs"
 
-main = xmonad $ defaultConfig
-  { terminal = "urxvt"
+myConfig bar = def
+  { terminal = "$HOME/.xmonad/open-terminal.sh"
   , modMask = modm
   , borderWidth = 0
-  , logHook = myLogHook
-  , workspaces = ["Util", "Web", "Dev", "Work", "Other"]
-  , layoutHook = spacingRaw True (Border 0 8 8 8) True (Border 8 8 8 8) True $
-                 layout
+  , logHook = myLogHook bar
+  , workspaces = ["\xf109", "\xf2d2", "\xf121", "4", "5", "6", "7", "8", "9"]
+  , layoutHook = avoidStruts
+               $ spacingRaw True (Border 8 8 8 8) True (Border 8 8 8 8) True
+               $ gaps [(U,20)]
+               $ myLayout
+  , manageHook = manageDocks
   }
   `additionalKeysP`
   [ ("M-c", kill)
-  , ("M-t", spawn "luakit")
+  , ("M-t", spawn "brave")
+  , ("<XF86AudioMute>", spawn "$HOME/.xmonad/vctl.sh -t")
+  , ("<XF86AudioLowerVolume>", spawn "$HOME/.xmonad/vctl.sh -d 5")
+  , ("<XF86AudioRaiseVolume>", spawn "$HOME/.xmonad/vctl.sh -i 5")
   ]
-  `additionalKeys`
-  [ ((modm .|. controlMask, xK_h), sendMessage $ pullGroup L)
-  , ((modm .|. controlMask, xK_l), sendMessage $ pullGroup R)
-  , ((modm .|. controlMask, xK_k), sendMessage $ pullGroup U)
-  , ((modm .|. controlMask, xK_j), sendMessage $ pullGroup D)
- 
-  , ((modm .|. controlMask, xK_m), withFocused (sendMessage . MergeAll))
-  , ((modm .|. controlMask, xK_u), withFocused (sendMessage . UnMerge))
- 
-  , ((modm .|. controlMask, xK_period), onGroup W.focusUp')
-  , ((modm .|. controlMask, xK_comma), onGroup W.focusDown')
-  ]
+
+main = do
+  wsbar <- spawnPipe myWsBar
+  xmonad $ myConfig wsbar

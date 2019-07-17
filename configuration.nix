@@ -41,12 +41,12 @@
   environment.systemPackages = with pkgs; [
     wget xsel unar ranger
     xmobar dmenu
-    acpi pamixer flameshot compton feh libnotify notify-osd-customizable
+    acpi volnoti pamixer flameshot compton feh libnotify notify-osd-customizable
     networkmanager_dmenu
     python3 ruby
     neovim git gnumake gcc
-    rxvt_unicode
-    dropbox firefox luakit
+    rxvt_unicode tmux peco
+    dropbox firefox brave luakit
     cmus cli-visualizer google-play-music-desktop-player
   ];
 

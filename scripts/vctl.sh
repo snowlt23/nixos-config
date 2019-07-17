@@ -1,3 +1,3 @@
 #!/bin/sh
-pamixer $@
-# volnoti-show $(pamixer --get-volume)
+pactl $@
+volnoti-show $(pamixer --get-volume)
