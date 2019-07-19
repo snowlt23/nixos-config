@@ -45,7 +45,7 @@
     networkmanager_dmenu
     python3 ruby
     neovim git gnumake gcc
-    rxvt_unicode tmux peco
+    rxvt_unicode
     dropbox firefox brave luakit
     cmus cli-visualizer google-play-music-desktop-player
   ];

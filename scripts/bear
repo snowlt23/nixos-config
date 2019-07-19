@@ -1,3 +1,0 @@
-#!/bin/sh
-ID="CC:98:8B:CF:A3:DF"
-echo "connect $ID" | bluetoothctl
