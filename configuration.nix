@@ -40,14 +40,14 @@
   # Package list
   environment.systemPackages = with pkgs; [
     wget xsel unar ranger
-    xmobar dmenu
+    xmobar dmenu trayer
     acpi volnoti pamixer flameshot compton feh libnotify notify-osd-customizable
     networkmanager_dmenu
     python3 ruby
     neovim git gnumake gcc
     rxvt_unicode
     dropbox firefox brave luakit
-    cmus cli-visualizer google-play-music-desktop-player
+    google-play-music-desktop-player
   ];
 
   networking.hostName = "snowlt23-pc";
@@ -64,6 +64,7 @@
   # Set your time zone.
   time.timeZone = "Asia/Tokyo";
 
+  # Using Xmonad
   services.xserver = {
     enable = true;
     desktopManager = {
@@ -79,18 +80,19 @@
         haskellPackages.xmonad
       ];
     };
-    # windowManager.i3.enable = true;
-    # windowManager.i3.package = pkgs.i3-gaps;
     libinput.enable = true;
     libinput.tapping = false;
     libinput.tappingDragLock = false;
 
     displayManager.sessionCommands =  ''
       compton --config ~/.config/compton.conf --xrender-sync --xrender-sync-fence -b
+      trayer --edge top --align right --expand true --width 10 --transparent true --height 20 --tint 0x1c1c1c --alpha 0 &
+      volnoti
       feh --bg-center /home/snowlt23/Pictures/wallpaper.png &
     '';
   };
 
+  # Fonts
   fonts = {
     enableFontDir = true;
     enableGhostscriptFonts = true;
@@ -148,7 +150,7 @@
   hardware.opengl.driSupport32Bit = true;
   hardware.pulseaudio.support32Bit = true;
   hardware.steam-hardware.enable = true;
-
+  # for Steam Link
   networking.firewall = {
      allowedTCPPorts = [ 27036 27037 ];
      allowedUDPPorts = [ 27031 27036 ];

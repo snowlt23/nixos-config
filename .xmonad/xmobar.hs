@@ -1,11 +1,9 @@
 Config { font = "xft:Migu 1M:size=13,Font Awesome 5 Free Solid:size=13"
        , bgColor = "#1c1c1c"
        , fgColor = "#ffffff"
-       , position = TopSize C 100 16
+       , position = Static { xpos = 0, ypos = 0, width = 1728, height = 20 }
        , lowerOnStart = False
        , overrideRedirect = False
-       , border = BottomBM 0
-       , borderColor = "#4e4e4e"
        , commands = [ Run Network "wlp1s0" [ "-t"        , " <dev> ⇩<rx> ⇧<tx>"
                                            , "--Low"    , "0"
                                            , "--High"   , "100"
