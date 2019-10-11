@@ -46,9 +46,8 @@ set hidden
 " set noshowcmd
 " set cmdheight=1
 
-nnoremap <C-h> :bp<CR>
-nnoremap <C-l> :bn<CR>
-nnoremap <C-w> :bd<CR>
+nnoremap <S-TAB> :tabp<CR>
+nnoremap <TAB> :tabn<CR>
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme='bubblegum'

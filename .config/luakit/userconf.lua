@@ -2,6 +2,7 @@ local settings = require "settings"
 local select = require "select"
 local follow = require "follow"
 local theme = require "theme"
+local modes = require "modes"
 local engines = settings.window.search_engines
 
 settings.window.home_page = "https://duckduckgo.com"
@@ -39,3 +40,29 @@ follow.stylesheet = [[
     border:           ]] .. (theme.hint_overlay_selected_border or "1px dotted #000")   .. [[;
   }
 ]]
+
+modes.remap_binds("normal", {
+    {"<Control-h>", "gT", true},
+    {"<Control-l>", "gt", true}
+})
+
+local video_cmd_fmt = "mpv --ytdl '%s'"
+modes.add_binds("ex-follow", {
+  { "m", "Hint all links and open the video behind that link externally with MPV.",
+      function (w)
+          w:set_mode("follow", {
+              prompt = "open with MPV", selector = "uri", evaluator = "uri",
+              func = function (uri)
+                  assert(type(uri) == "string")
+                  luakit.spawn(string.format(video_cmd_fmt, uri))
+                  w:notify("Launched MPV")
+              end
+          })
+      end },
+  { "M", "Open the video on the current page externally with MPV.",
+      function (w)
+        local uri = string.gsub(w.view.uri or "", " ", "%%20")
+        luakit.spawn(string.format(video_cmd_fmt, uri))
+        w:notify("Launched MPV")
+      end },
+})

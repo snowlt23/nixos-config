@@ -13,10 +13,10 @@ cp -r .config/* ~/.config/
 cp .config/luakit/userconf.lua ~/.config/luakit/userconf.lua
 cp .config/luakit/theme.lua ~/.config/luakit/theme.lua
 
-cd ~/.mozilla/firefox
-ls -1 | while read F ; do
-  if [ -d "$F" ] ; then
-    mkdir -p "$F/chrome"
-    cp ~/nixos-config/userChrome.css "$F/chrome/userChrome.css"
-  fi
-done
+# cd ~/.mozilla/firefox
+# ls -1 | while read F ; do
+#   if [ -d "$F" ] ; then
+#     mkdir -p "$F/chrome"
+#     cp ~/nixos-config/userChrome.css "$F/chrome/userChrome.css"
+#   fi
+# done

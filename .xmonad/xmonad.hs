@@ -2,19 +2,21 @@
 
 import XMonad
 
-import XMonad.Layout.Tabbed
-import XMonad.Layout.OneBig
-import XMonad.Layout.Combo
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Spacing
 import XMonad.Layout.Gaps
+import XMonad.Layout.NoBorders
+import XMonad.Layout.Fullscreen
+import XMonad.Layout.TwoPane
+import XMonad.Actions.GridSelect
+import XMonad.Actions.WindowBringer
 
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run
 import XMonad.Util.EZConfig
 import XMonad.Hooks.FadeInactive
-
+import XMonad.Hooks.ManageHelpers
 import qualified XMonad.StackSet as W
 
 colorBlue      = "#868bae"
@@ -26,7 +28,7 @@ colorNormalbg  = "#1c1c1c"
 colorfg        = "#a8b6b8"
 
 fadeLogHook = fadeInactiveLogHook fadeAmount
-    where fadeAmount = 0.9
+    where fadeAmount = 1.0
 
 wsPP = xmobarPP { ppOrder           = \(ws:l:t:_)  -> [ws,t]
                 , ppCurrent         = xmobarColor colorRed     colorNormalbg . \s -> s
@@ -41,33 +43,47 @@ wsPP = xmobarPP { ppOrder           = \(ws:l:t:_)  -> [ws,t]
                 }
 myLogHook h = composeAll [dynamicLogWithPP $ wsPP { ppOutput = hPutStrLn h }, fadeLogHook]
 
-defaultLayout = Tall 1 (10/100) (2/3)
-            ||| OneBig (3/4) (3/4)
-            ||| simpleTabbed
+myLayout = TwoPane (3/100) (1/2)
 
-myLayout = defaultLayout
+myBorderWidth = 1 
+myFocusedBorderColor = "#ffffff"
+myNormalBorderColor = "#aaaaaa"
 
 modm = mod4Mask
 myWsBar = "xmobar $HOME/.xmonad/xmobar.hs"
 
+myManageHook = composeAll [ className =? "Chromium" --> doShift "web"
+                          , className =? "Firefox"  --> doShift "Web"
+                          , resource  =? "desktop_window" --> doIgnore
+                          , className =? "stalonetray"    --> doIgnore
+                          , isFullscreen --> doFullFloat
+                          ]
+
 myConfig bar = def
   { terminal = "$HOME/.xmonad/open-terminal.sh"
   , modMask = modm
-  , borderWidth = 0
+  , borderWidth = myBorderWidth
+  , focusedBorderColor = myFocusedBorderColor
+  , normalBorderColor = myNormalBorderColor
   , logHook = myLogHook bar
+  , handleEventHook = fullscreenEventHook
   , workspaces = ["\xf109", "\xf2d2", "\xf121", "4", "5", "6", "7", "8", "9"]
-  , layoutHook = avoidStruts
-               $ spacingRaw True (Border 8 8 8 8) True (Border 8 8 8 8) True
-               $ gaps [(U,20)]
-               $ myLayout
-  , manageHook = manageDocks
+  , layoutHook = (gaps [(U,20)]
+                $ noBorders (fullscreenFull Full))
+             ||| (spacingRaw False (Border 8 8 8 8) True (Border 8 8 8 8) True
+                $ gaps [(U,20)]
+                $ myLayout)
+  , manageHook = manageDocks <+> myManageHook <+> fullscreenManageHook
   }
   `additionalKeysP`
   [ ("M-c", kill)
-  , ("M-t", spawn "brave")
+  , ("M-t", spawn "vivaldi")
   , ("<XF86AudioMute>", spawn "$HOME/.xmonad/vctl.sh -t")
   , ("<XF86AudioLowerVolume>", spawn "$HOME/.xmonad/vctl.sh -d 5")
   , ("<XF86AudioRaiseVolume>", spawn "$HOME/.xmonad/vctl.sh -i 5")
+  ]
+  `additionalKeys`
+  [ ((modm, xK_f), goToSelected defaultGSConfig)
   ]
 
 main = do

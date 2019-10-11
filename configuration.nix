@@ -44,11 +44,12 @@
     acpi volnoti pamixer flameshot compton feh libnotify notify-osd-customizable
     networkmanager_dmenu
     python3 ruby
-    neovim git gnumake gcc
-    rxvt_unicode
-    dropbox firefox brave luakit
-    google-play-music-desktop-player
+    neovim emacs git gnumake gcc
+    rxvt_unicode tmux mosh
+    ffmpeg vivaldi
+    discord
   ];
+  programs.fish.enable = true;
 
   networking.hostName = "snowlt23-pc";
   networking.networkmanager.enable = true;
@@ -57,7 +58,7 @@
   # Select internationalisation properties.
   i18n = {
     consoleFont = "Lat2-Terminus16";
-    consoleKeyMap = "jp106";
+    consoleUseXkbConfig = true;
     defaultLocale = "ja_JP.UTF-8";
   };
 
@@ -67,6 +68,9 @@
   # Using Xmonad
   services.xserver = {
     enable = true;
+
+    layout = "us,ua";
+
     desktopManager = {
       default = "none";
       xterm.enable = false;
@@ -83,6 +87,7 @@
     libinput.enable = true;
     libinput.tapping = false;
     libinput.tappingDragLock = false;
+    libinput.naturalScrolling = true;
 
     displayManager.sessionCommands =  ''
       compton --config ~/.config/compton.conf --xrender-sync --xrender-sync-fence -b
@@ -136,6 +141,7 @@
     createHome = true;
     uid = 1000;
     extraGroups = [ "wheel" ];
+    shell = pkgs.fish;
   };
 
   # input method for JP
@@ -152,7 +158,7 @@
   hardware.steam-hardware.enable = true;
   # for Steam Link
   networking.firewall = {
-     allowedTCPPorts = [ 27036 27037 ];
-     allowedUDPPorts = [ 27031 27036 ];
+     allowedTCPPorts = [ 27036 27037 9000 3478 ];
+     allowedUDPPorts = [ 27031 27036 9000 3478 ];
   };
 }
