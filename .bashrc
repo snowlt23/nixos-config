@@ -1,6 +1,6 @@
 alias v=nvim
 alias vim=nvim
-EDITOR=nvim
+export EDITOR=nvim
 PATH=$PATH:$HOME/nixos-config/scripts
 PATH=$PATH:$HOME/private-scripts
 PATH=$PATH:$HOME/github/adhocc

@@ -68,16 +68,17 @@ myConfig bar = def
   , logHook = myLogHook bar
   , handleEventHook = fullscreenEventHook
   , workspaces = ["\xf109", "\xf2d2", "\xf121", "4", "5", "6", "7", "8", "9"]
-  , layoutHook = (gaps [(U,20)]
-                $ noBorders (fullscreenFull Full))
-             ||| (spacingRaw False (Border 8 8 8 8) True (Border 8 8 8 8) True
+  , layoutHook = (spacingRaw False (Border 8 8 8 8) True (Border 8 8 8 8) True
                 $ gaps [(U,20)]
                 $ myLayout)
+             ||| (gaps [(U,20)]
+                $ noBorders (fullscreenFull Full))
+
   , manageHook = manageDocks <+> myManageHook <+> fullscreenManageHook
   }
   `additionalKeysP`
   [ ("M-c", kill)
-  , ("M-t", spawn "vivaldi")
+  , ("M-t", spawn "brave")
   , ("<XF86AudioMute>", spawn "$HOME/.xmonad/vctl.sh -t")
   , ("<XF86AudioLowerVolume>", spawn "$HOME/.xmonad/vctl.sh -d 5")
   , ("<XF86AudioRaiseVolume>", spawn "$HOME/.xmonad/vctl.sh -i 5")

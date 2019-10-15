@@ -40,16 +40,14 @@
   # Package list
   environment.systemPackages = with pkgs; [
     wget xsel unar ranger
-    xmobar dmenu trayer
-    acpi volnoti pamixer flameshot compton feh libnotify notify-osd-customizable
+    albert acpi volnoti pamixer flameshot compton feh libnotify notify-osd-customizable
     networkmanager_dmenu
     python3 ruby
     neovim emacs git gnumake gcc
     rxvt_unicode tmux mosh
-    ffmpeg vivaldi
+    ffmpeg brave
     discord
   ];
-  programs.fish.enable = true;
 
   networking.hostName = "snowlt23-pc";
   networking.networkmanager.enable = true;
@@ -75,14 +73,8 @@
       default = "none";
       xterm.enable = false;
     };
-    windowManager.xmonad = {
+    windowManager.awesome = {
       enable = true;
-      enableContribAndExtras = true;
-      extraPackages = haskellPackages: [
-        haskellPackages.xmonad-contrib
-        haskellPackages.xmonad-extras
-        haskellPackages.xmonad
-      ];
     };
     libinput.enable = true;
     libinput.tapping = false;
@@ -91,9 +83,8 @@
 
     displayManager.sessionCommands =  ''
       compton --config ~/.config/compton.conf --xrender-sync --xrender-sync-fence -b
-      trayer --edge top --align right --expand true --width 10 --transparent true --height 20 --tint 0x1c1c1c --alpha 0 &
       volnoti
-      feh --bg-center /home/snowlt23/Pictures/wallpaper.png &
+      # feh --bg-center /home/snowlt23/Pictures/wallpaper.png &
     '';
   };
 
@@ -103,6 +94,8 @@
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
       corefonts
+      fantasque-sans-mono
+      material-icons
       inconsolata
       dejavu_fonts
       font-awesome-ttf
@@ -141,7 +134,6 @@
     createHome = true;
     uid = 1000;
     extraGroups = [ "wheel" ];
-    shell = pkgs.fish;
   };
 
   # input method for JP

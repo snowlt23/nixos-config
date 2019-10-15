@@ -1,7 +1,7 @@
-Config { font = "xft:Migu 1M:size=13,Font Awesome 5 Free Solid:size=13"
+Config { font = "xft:Fantasque Sans Mono:size=12,Font Awesome 5 Free Solid:size=13,Migu 1M:size=12"
        , bgColor = "#1c1c1c"
        , fgColor = "#ffffff"
-       , position = Static { xpos = 0, ypos = 0, width = 1728, height = 20 }
+       , position = Static { xpos = 0, ypos = 0, width = 1920, height = 20 }
        , lowerOnStart = False
        , overrideRedirect = False
        , commands = [ Run Network "wlp1s0" [ "-t"        , " <dev> ⇩<rx> ⇧<tx>"
@@ -39,10 +39,10 @@ Config { font = "xft:Migu 1M:size=13,Font Awesome 5 Free Solid:size=13"
                                           -- charged status
                                           , "-i"	, "<fc=#006000> <left>%</fc>"
                                           ] 50
-                    , Run Date "%a %m/%d %H:%M" "date" 10
+                    , Run Date "%m/%d %H:%M" "date" 10
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %StdinReader% }{ %wlp1s0%     %multicpu%   %memory%   %battery%   <fc=#ece391>%date%</fc> "
+       , template = "   %StdinReader% }{ %wlp1s0%     %multicpu%   %memory%   %battery%   <fc=#ece391>%date%</fc>   "
 }
