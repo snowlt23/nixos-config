@@ -16,10 +16,11 @@
     stateVersion = "19.03";
   };
 
-  # Common
+  # Packages
   nixpkgs.config = {
     allowUnfree = true;
     packageOverrides = pkgs: rec {
+      criptext = import ./pkgs/criptext.nix;
       # Override bluez for a2dp bug at reconnecting.
       bluez = pkgs.stdenv.lib.overrideDerivation pkgs.bluez (oldAttrs: {
         name = "bluez-git";
@@ -40,13 +41,13 @@
   # Package list
   environment.systemPackages = with pkgs; [
     wget xsel unar ranger
-    albert acpi volnoti pamixer flameshot compton feh libnotify notify-osd-customizable
+    albert acpi volnoti pamixer flameshot compton feh libnotify dunst
     networkmanager_dmenu
     python3 ruby
     neovim emacs git gnumake gcc
     rxvt_unicode tmux mosh
     ffmpeg brave
-    discord
+    discord criptext
   ];
 
   networking.hostName = "snowlt23-pc";
@@ -86,6 +87,14 @@
       volnoti
       # feh --bg-center /home/snowlt23/Pictures/wallpaper.png &
     '';
+  };
+
+  # Cron
+  services.cron = {
+    enable = true;
+    systemCronJobs = [
+      "*/5 * * * *      snowlt23    . /home/snowlt23/.bashrc; battery-notify.sh"
+    ];
   };
 
   # Fonts
