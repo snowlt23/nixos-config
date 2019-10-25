@@ -43,6 +43,7 @@
 
   # Package list
   environment.systemPackages = with pkgs; [
+    home-manager
     wget xsel unar ranger
     albert acpi volnoti pamixer flameshot compton feh libnotify dunst
     networkmanager_dmenu
