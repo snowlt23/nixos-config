@@ -20,6 +20,9 @@
   nixpkgs.config = {
     allowUnfree = true;
     packageOverrides = pkgs: rec {
+      polybar = pkgs.polybar.override {
+        i3Support = true;
+      };
       criptext = import ./pkgs/criptext.nix;
       # Override bluez for a2dp bug at reconnecting.
       bluez = pkgs.stdenv.lib.overrideDerivation pkgs.bluez (oldAttrs: {
@@ -47,7 +50,9 @@
     neovim emacs git gnumake gcc
     rxvt_unicode tmux mosh
     ffmpeg brave
-    discord criptext
+    discord
+    libva vaapiVdpau
+    #criptext
   ];
 
   networking.hostName = "snowlt23-pc";
@@ -74,8 +79,14 @@
       default = "none";
       xterm.enable = false;
     };
-    windowManager.awesome = {
+    windowManager.i3 = {
       enable = true;
+      package = pkgs.i3-gaps;
+      extraPackages = with pkgs; [
+        rofi
+        polybar
+        i3status
+      ];
     };
     libinput.enable = true;
     libinput.tapping = false;
@@ -83,9 +94,6 @@
     libinput.naturalScrolling = true;
 
     displayManager.sessionCommands =  ''
-      compton --config ~/.config/compton.conf --xrender-sync --xrender-sync-fence -b
-      volnoti
-      # feh --bg-center /home/snowlt23/Pictures/wallpaper.png &
     '';
   };
 

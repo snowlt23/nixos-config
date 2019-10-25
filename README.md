@@ -1,10 +1,10 @@
 # nixos-config (snowlt23)
 
-- WM: Awesome (modified theme from <https://github.com/lcpz/awesome-copycats>)
+- WM: i3-gaps
 - Browser: Brave
 - Editor: Neovim
 - Terminal: Urxvt
-- Input Method: uim
+- Input Method: uim-skk
 
 # Installation
 
