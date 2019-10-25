@@ -40,17 +40,8 @@ set clipboard=unnamed
 set hls
 set hidden
 
-" set noshowmode
-" set noruler
-" set laststatus=0
-" set noshowcmd
-" set cmdheight=1
-
 nnoremap <S-TAB> :tabp<CR>
 nnoremap <TAB> :tabn<CR>
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme='bubblegum'
-
-" let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-" execute 'set rtp+=' . g:opamshare . '/merlin/vim'
