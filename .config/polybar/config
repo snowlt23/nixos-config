@@ -40,10 +40,10 @@ border-size = 0
 border-color = #00282c34
 
 padding-left = 0
-padding-right 0
+padding-right = 0
 
-module-margin-left = 0
-module-margin-right = 0
+module-margin-left = 2
+module-margin-right = 2
 
 font-0 = Hack Regular:pixelsize=12;3
 font-1 = Font Awesome 5 Free:pixelsize=12;3
@@ -55,7 +55,7 @@ dim-value = 1.0
 
 modules-left = i3
 modules-center = mpd
-modules-right = update network memory battery volume date
+modules-right = update network memory volume battery date
 
 tray-position = right
 tray-detached = false
@@ -141,6 +141,49 @@ interval = 1
 format-padding = 1
 format-background = ${colors.mono4}
 format-foreground = ${colors.mono2}
+
+[module/battery]
+type = internal/battery
+full-at = 99
+battery = BAT0
+adapter = ADP1
+poll-interval = 5
+time-format = %H:%M
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+;format-full = <ramp-capacity> <label-full>
+label-charging = CHG %percentage%%
+label-discharging = %percentage%%
+label-full = %percentage%%
+
+; Only applies if <ramp-capacity> is used
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+; Only applies if <bar-capacity> is used
+bar-capacity-width = 10
+
+; Only applies if <animation-charging> is used
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+; Framerate in milliseconds
+animation-charging-framerate = 750
+
+; Only applies if <animation-discharging> is used
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-3 = 
+animation-discharging-4 = 
+; Framerate in milliseconds
+animation-discharging-framerate = 500
 
 [module/date]
 type = custom/script
