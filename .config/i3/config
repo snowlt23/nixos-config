@@ -3,7 +3,8 @@ floating_modifier $mod
 
 exec_always pkill compton; compton
 exec_always pkill volnoti; volnoti
-exec_always pkill feh; feh --bg-center $HOME/Pictures/wallpaper.png
+exec_always feh --bg-center $HOME/Pictures/wallpaper.png
+exec_always $HOME/private-scripts/anim-wallpaper
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Font

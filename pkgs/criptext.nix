@@ -24,7 +24,7 @@ stdenv.mkDerivation {
     longDescription = ''
     '';
     homepage = https://criptext.com;
-    license = licenses.agpl3;
+    #license = licenses.unfree;
     maintainers = with maintainers; [ snowlt23 ];
     platforms = [ "x86_64-linux" ];
   };

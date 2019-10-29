@@ -5,7 +5,6 @@ URxvt.letterSpace:          0
 
 ! Dracula Xresources palette
 *.foreground: #F8F8F2
-! *.background: #282A36
 *.background: #000000
 *.color0:     #000000
 *.color8:     #4D4D4D
@@ -23,11 +22,6 @@ URxvt.letterSpace:          0
 *.color14:    #9AEDFE
 *.color7:     #BFBFBF
 *.color15:    #E6E6E6
-
-! transparent
-! URxvt*inheritPixmap: true
-URxvt*.transparent: true
-URxvt*.shading: 25
 
 URxvt.scrollBar:            false
 URxvt*scrollTtyKeypress:    true

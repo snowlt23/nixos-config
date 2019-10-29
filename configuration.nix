@@ -24,6 +24,8 @@
         i3Support = true;
       };
       criptext = import ./pkgs/criptext.nix;
+      xp-pen = import ./pkgs/xp-pen.nix;
+      parsecd = import ./pkgs/parsecd.nix;
       # Override bluez for a2dp bug at reconnecting.
       bluez = pkgs.stdenv.lib.overrideDerivation pkgs.bluez (oldAttrs: {
         name = "bluez-git";
@@ -53,6 +55,7 @@
     ffmpeg brave
     discord
     libva vaapiVdpau
+    xp-pen
     #criptext
   ];
 
@@ -151,13 +154,17 @@
     isNormalUser = true;
     createHome = true;
     uid = 1000;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "i2c" ];
   };
 
   # input method for JP
   i18n.inputMethod = {
     enabled  = "uim";
   };
+
+  # virtualisation
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
 
   # steam
   users.extraUsers.snowlt23.packages = [
