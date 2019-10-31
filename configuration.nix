@@ -13,7 +13,7 @@
     ];
 
   system = {
-    stateVersion = "19.03";
+    stateVersion = "19.09";
   };
 
   # Packages
@@ -23,17 +23,7 @@
       polybar = pkgs.polybar.override {
         i3Support = true;
       };
-      #brave = pkgs.brave.overrideDerivation (oldAttrs: rec {
-      #  name = "brave";
-      #  version = "0.70.121";
-      #  src = pkgs.fetchurl {
-      #    url = "https://github.com/brave/brave-browser/releases/download/v${version}/brave-browser_${version}_amd64.deb";
-			#		sha256 = "1bzsh9i2jjnvvk0wwmrxhcx4ls8asjgy3drh9ylxl7zf0w1yp741";
-      #  };
-      #});
       criptext = import ./pkgs/criptext.nix;
-      xp-pen = import ./pkgs/xp-pen.nix;
-      parsecd = import ./pkgs/parsecd.nix;
       # Override bluez for a2dp bug at reconnecting.
       bluez = pkgs.stdenv.lib.overrideDerivation pkgs.bluez (oldAttrs: {
         name = "bluez-git";
@@ -60,11 +50,10 @@
     python3 ruby
     neovim emacs git gnumake gcc
     rxvt_unicode tmux mosh
+    fcitx-engines.skk
     ffmpeg brave qutebrowser
     discord
     libva vaapiVdpau
-    xp-pen
-    #parsecd
     #criptext
   ];
 
@@ -168,12 +157,13 @@
 
   # input method for JP
   i18n.inputMethod = {
-    enabled  = "uim";
+    enabled  = "fcitx";
+    fcitx.engines = with pkgs.fcitx-engines; [ skk ];
   };
 
   # virtualisation
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.host.enableExtensionPack = true;
+  #virtualisation.virtualbox.host.enable = true;
+  #virtualisation.virtualbox.host.enableExtensionPack = true;
 
   # steam
   users.extraUsers.snowlt23.packages = [

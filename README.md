@@ -4,7 +4,7 @@
 - Browser: qutebrowser
 - Editor: Neovim
 - Terminal: Urxvt
-- Input Method: uim-skk
+- Input Method: fcitx-skk
 
 # Installation
 
