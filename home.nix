@@ -21,6 +21,7 @@
     ".config/nvim/init.vim".source = ./.config/nvim/init.vim;
     ".config/i3/config".source = ./.config/i3/config;
     ".config/compton.conf".source = ./.config/compton.conf;
+    ".config/qutebrowser/config.py".source = ./.config/qutebrowser/config.py;
     ".config/vis/config".source = ./.config/vis/config;
     ".config/vis/colors/rainbow".source = ./.config/vis/colors/rainbow;
   };

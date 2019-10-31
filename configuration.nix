@@ -23,14 +23,14 @@
       polybar = pkgs.polybar.override {
         i3Support = true;
       };
-      brave = pkgs.brave.overrideDerivation (oldAttrs: rec {
-        name = "brave";
-        version = "0.70.121";
-        src = pkgs.fetchurl {
-          url = "https://github.com/brave/brave-browser/releases/download/v${version}/brave-browser_${version}_amd64.deb";
-					sha256 = "1bzsh9i2jjnvvk0wwmrxhcx4ls8asjgy3drh9ylxl7zf0w1yp741";
-        };
-      });
+      #brave = pkgs.brave.overrideDerivation (oldAttrs: rec {
+      #  name = "brave";
+      #  version = "0.70.121";
+      #  src = pkgs.fetchurl {
+      #    url = "https://github.com/brave/brave-browser/releases/download/v${version}/brave-browser_${version}_amd64.deb";
+			#		sha256 = "1bzsh9i2jjnvvk0wwmrxhcx4ls8asjgy3drh9ylxl7zf0w1yp741";
+      #  };
+      #});
       criptext = import ./pkgs/criptext.nix;
       xp-pen = import ./pkgs/xp-pen.nix;
       parsecd = import ./pkgs/parsecd.nix;
@@ -60,10 +60,11 @@
     python3 ruby
     neovim emacs git gnumake gcc
     rxvt_unicode tmux mosh
-    ffmpeg brave
+    ffmpeg brave qutebrowser
     discord
     libva vaapiVdpau
     xp-pen
+    #parsecd
     #criptext
   ];
 
