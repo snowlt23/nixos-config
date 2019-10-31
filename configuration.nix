@@ -52,6 +52,7 @@
     rxvt_unicode tmux mosh
     fcitx-engines.skk
     ffmpeg brave qutebrowser
+    bitwarden
     discord
     libva vaapiVdpau
     #criptext
