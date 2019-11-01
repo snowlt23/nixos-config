@@ -51,7 +51,7 @@
     neovim emacs git gnumake gcc
     rxvt_unicode tmux mosh
     fcitx-engines.skk
-    firefox tridactyl-native
+    brave
     discord
     libva vaapiVdpau
     #criptext
