@@ -47,12 +47,11 @@
     wget xsel unar ranger
     albert acpi volnoti pamixer flameshot compton feh libnotify dunst
     networkmanager_dmenu
-    python3 ruby
+    python3 ruby ffmpeg
     neovim emacs git gnumake gcc
     rxvt_unicode tmux mosh
     fcitx-engines.skk
-    ffmpeg brave qutebrowser
-    bitwarden
+    firefox tridactyl-native
     discord
     libva vaapiVdpau
     #criptext

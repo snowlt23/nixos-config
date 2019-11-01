@@ -1,7 +1,7 @@
 # nixos-config (snowlt23)
 
 - WM: i3-gaps
-- Browser: qutebrowser
+- Browser: Firefox+Tridactyl
 - Editor: Neovim
 - Terminal: Urxvt
 - Input Method: fcitx-skk
