@@ -12,6 +12,7 @@
 
   home.file = {
     ".bashrc".source = ./.bashrc;
+    ".bash_profile".source = ./.bash_profile;
     ".config/polybar/config".source = ./.config/polybar/config;
     ".config/polybar/launch.sh".source = ./.config/polybar/launch.sh;
     ".config/polybar/memory.sh".source = ./.config/polybar/memory.sh;

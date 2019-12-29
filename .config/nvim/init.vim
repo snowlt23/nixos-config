@@ -16,6 +16,7 @@ if dein#load_state('~/.vim/dein')
   " Add or remove your plugins here like this:
   "call dein#add('Shougo/neosnippet.vim')
   "call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('ctrlpvim/ctrlp.vim')
   call dein#add('vim-airline/vim-airline')
   call dein#add('vim-airline/vim-airline-themes')
 

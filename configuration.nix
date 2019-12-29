@@ -44,13 +44,12 @@
   # Package list
   environment.systemPackages = with pkgs; [
     home-manager
-    wget xsel unar ranger
+    wget xsel unar ranger fzf powerline-go
     albert acpi volnoti pamixer flameshot compton feh libnotify dunst
     networkmanager_dmenu
     python3 ruby ffmpeg
     neovim emacs git gnumake gcc
     rxvt_unicode tmux mosh
-    fcitx-engines.skk
     brave
     discord
     libva vaapiVdpau
@@ -59,7 +58,7 @@
 
   networking.hostName = "snowlt23-pc";
   networking.networkmanager.enable = true;
-  # networking.wireless.enable = true;
+  #networking.wireless.enable = true;
 
   # Select internationalisation properties.
   i18n = {
@@ -94,18 +93,10 @@
     libinput.tapping = false;
     libinput.tappingDragLock = false;
     libinput.naturalScrolling = true;
-
-    displayManager.sessionCommands =  ''
-    '';
   };
 
-  # Cron
-  services.cron = {
-    enable = true;
-    systemCronJobs = [
-      "*/5 * * * *      snowlt23    . /home/snowlt23/.bashrc; battery-notify.sh"
-    ];
-  };
+  # TLP
+  services.tlp.enable = true;
 
   # Fonts
   fonts = {
@@ -157,8 +148,7 @@
 
   # input method for JP
   i18n.inputMethod = {
-    enabled  = "fcitx";
-    fcitx.engines = with pkgs.fcitx-engines; [ skk ];
+    enabled  = "uim";
   };
 
   # virtualisation
@@ -176,5 +166,20 @@
   networking.firewall = {
      allowedTCPPorts = [ 27036 27037 9000 3478 ];
      allowedUDPPorts = [ 27031 27036 9000 3478 ];
+  };
+
+  fileSystems."/mnt/Share" = {
+    device = "//192.168.1.4/Share";
+    fsType = "cifs";
+    options = let
+      automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+    in ["${automount_opts},credentials=/etc/nixos/smb-guest"];
+  };
+  fileSystems."/mnt/snowlt23-server" = {
+    device = "//192.168.1.4/snowlt23";
+    fsType = "cifs";
+    options = let
+      automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+    in ["${automount_opts},credentials=/etc/nixos/smb-secrets"];
   };
 }
