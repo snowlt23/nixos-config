@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+cmd=$1
+if [ "$cmd" = "" ] ; then
+  tmux split-window -h -p 40
+  tmux split-window -v -p 50
+elif [ "$cmd" = "3" ] ; then
+  tmux split-window -h -p 40
+  tmux split-window -v -p 66
+  tmux split-window -v -p 50
+else
+  echo "ide: unexpected $cmd command"
+  exit 1
+fi
