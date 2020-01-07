@@ -75,6 +75,7 @@
     enable = true;
 
     layout = "us,ua";
+    xkbOptions = "caps:swapescape";
 
     desktopManager = {
       default = "none";
@@ -93,6 +94,10 @@
     libinput.tapping = false;
     libinput.tappingDragLock = false;
     libinput.naturalScrolling = true;
+
+    displayManager.sessionCommands = ''
+      xrandr --output eDP-1 --brightness 0.7
+    '';
   };
 
   # TLP
