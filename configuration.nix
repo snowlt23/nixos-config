@@ -117,6 +117,7 @@ in
     libinput.naturalScrolling = true;
 
     displayManager.sessionCommands = ''
+      feh --bg-center /home/snowlt23/Pictures/wallpaper.png &
     '';
   };
 

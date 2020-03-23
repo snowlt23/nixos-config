@@ -21,7 +21,6 @@ dotf() {
 }
 
 dotf .bashrc
-dotf .bash_profile
 dotf .tmux.conf
 dotf .tridactylrc
 dotf .Xresources

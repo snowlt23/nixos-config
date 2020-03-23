@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+out=$(
+  git log --graph --color=always \
+      --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+  fzf --ansi --multi --no-sort --reverse --query="$q" \
+      --print-query --expect=ctrl-d);
+q=$(head -1 <<< "$out")
+k=$(head -2 <<< "$out" | tail -1)
+shas=$(sed '1,2d;s/^[^a-z0-9]*//;/^$/d' <<< "$out" | awk '{print $1}')
+echo -n "$shas" | win32yank.exe -i
