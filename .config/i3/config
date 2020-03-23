@@ -38,9 +38,9 @@ bindsym XF86AudioLowerVolume exec ~/nixos-config/scripts/vctl.sh -d 5 && pkill -
 bindsym XF86AudioMute exec ~/nixos-config/scripts/vctl.sh -t && pkill -RTMIN+1 i3blocks 
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec rofi -show drun
-bindsym $mod+Shift+d exec rofi -show run
-bindsym $mod+Ctrl+d exec rofi -show window
+bindsym $mod+d exec rofi -show drun -theme ~/nixos-config/slate.rasi
+bindsym $mod+Shift+d exec rofi -show run -theme ~/nixos-config/slate.rasi
+bindsym $mod+Ctrl+d exec rofi -show window -theme ~/nixos-config/slate.rasi
 
 # change focus
 bindsym $mod+h focus left
