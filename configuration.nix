@@ -64,7 +64,7 @@ in
   # Package list
   environment.systemPackages = with pkgs; [
     wget xsel unar ranger fzf powerline-go
-    acpi volnoti pamixer compton feh libnotify dunst powertop moc scrot
+    acpi volnoti pamixer pavucontrol compton feh libnotify dunst powertop moc scrot
     (python35.withPackages(ps: with ps; [ pip setuptools ]))
     ffmpeg imagemagick vorbis-tools youtube-dl
     neovim emacs git gnumake gcc
@@ -96,7 +96,7 @@ in
     enable = true;
 
     layout = "us,ua";
-    xkbOptions = "caps:swapescape";
+    xkbOptions = "caps:escape";
 
     desktopManager = {
       default = "none";
@@ -115,6 +115,20 @@ in
     libinput.tapping = false;
     libinput.tappingDragLock = false;
     libinput.naturalScrolling = true;
+
+    config = ''
+      Section "InputClass"
+        Identifier    "ELECOM TrackBall Mouse DEFT Pro TrackBall"
+        MatchProduct  "ELECOM TrackBall Mouse DEFT Pro TrackBall"
+        Driver        "libinput"
+        Option        "ScrollMethod" "button"
+        Option        "ScrollButton" "8"
+        Option        "ButtonMapping" "1 2 3 4 5 6 7 8 3"
+        Option        "MiddleEmulation" "on"
+        Option        "AccelProfile" "flat"
+        Option        "AccelSpeed" "0.1"
+      EndSection
+    '';
 
     displayManager.sessionCommands = ''
       feh --bg-center /home/snowlt23/Pictures/wallpaper.png &
