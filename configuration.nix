@@ -3,7 +3,26 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { stdenv, config, pkgs, ... }:
+let
+  unstable = import <nixos-unstable> {};
 
+  xkeysnail = pkgs.python37Packages.buildPythonPackage {
+    pname = "xkeysnail";
+    version = "0.2.0";
+    src = pkgs.fetchFromGitHub {
+      owner = "mooz";
+      repo = "xkeysnail";
+      rev = "7ca27e0ada406cfccc5aed051e1a75618fee196b";
+      sha256 = "1hv5yb87dx7imizdwmxsfbm9w4q8hck95pn4ndndhngphic1h057";
+    };
+    doCheck = false;
+    propagatedBuildInputs = [
+      pkgs.python37Packages.xlib
+      pkgs.python37Packages.evdev
+      pkgs.python37Packages.inotify-simple
+    ];
+  };
+in
 {
   imports =
     (if (builtins.pathExists /mnt/etc/nixos/hardware-configuration.nix) then [ /mnt/etc/nixos/hardware-configuration.nix ]
@@ -23,7 +42,7 @@
       polybar = pkgs.polybar.override {
         i3Support = true;
       };
-      criptext = import ./pkgs/criptext.nix;
+  #    criptext = import ./pkgs/criptext.nix;
       # Override bluez for a2dp bug at reconnecting.
       bluez = pkgs.stdenv.lib.overrideDerivation pkgs.bluez (oldAttrs: {
         name = "bluez-git";
@@ -43,17 +62,17 @@
 
   # Package list
   environment.systemPackages = with pkgs; [
-    home-manager
     wget xsel unar ranger fzf powerline-go
-    albert acpi volnoti pamixer flameshot compton feh libnotify dunst
-    networkmanager_dmenu
-    python3 ruby ffmpeg
+    albert acpi volnoti pamixer compton feh libnotify dunst powertop
+    (python35.withPackages(ps: with ps; [ pip setuptools ]))
+    ffmpeg
     neovim emacs git gnumake gcc
     rxvt_unicode tmux mosh
-    brave
+    firefox
     discord
     libva vaapiVdpau
-    #criptext
+    xkeysnail
+    unstable.wineWowPackages.stable
   ];
 
   networking.hostName = "snowlt23-pc";
@@ -96,7 +115,6 @@
     libinput.naturalScrolling = true;
 
     displayManager.sessionCommands = ''
-      xrandr --output eDP-1 --brightness 0.7
     '';
   };
 
@@ -148,7 +166,7 @@
     isNormalUser = true;
     createHome = true;
     uid = 1000;
-    extraGroups = [ "wheel" "i2c" ];
+    extraGroups = [ "wheel" "i2c" "input" ];
   };
 
   # input method for JP
@@ -159,6 +177,8 @@
   # virtualisation
   #virtualisation.virtualbox.host.enable = true;
   #virtualisation.virtualbox.host.enableExtensionPack = true;
+
+  boot.kernelModules = [ "uinput" ];
 
   # steam
   users.extraUsers.snowlt23.packages = [
@@ -171,20 +191,5 @@
   networking.firewall = {
      allowedTCPPorts = [ 27036 27037 9000 3478 ];
      allowedUDPPorts = [ 27031 27036 9000 3478 ];
-  };
-
-  fileSystems."/mnt/Share" = {
-    device = "//192.168.1.4/Share";
-    fsType = "cifs";
-    options = let
-      automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-    in ["${automount_opts},credentials=/etc/nixos/smb-guest"];
-  };
-  fileSystems."/mnt/snowlt23-server" = {
-    device = "//192.168.1.4/snowlt23";
-    fsType = "cifs";
-    options = let
-      automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-    in ["${automount_opts},credentials=/etc/nixos/smb-secrets"];
   };
 }

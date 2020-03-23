@@ -1,47 +1,39 @@
 alias vim=nvim
-alias r=ranger
-export EDITOR=nvim
-PATH=$PATH:$HOME/nixos-config/scripts
-PATH=$PATH:$HOME/private-scripts
-PATH=$PATH:$HOME/github/adhocc
-alias ns='sudo nixos-rebuild switch'
-alias hs='home-manager switch'
-alias ssh-desktop='mosh snowlt23@192.168.1.4'
+EDITOR=nvim
+WINHOME=/mnt/c/Users/shsno
+PATH=$PATH:~/private
+PATH=$PATH:~/private/scripts
+PATH=$PATH:$WINHOME/scoop/shims
+PATH=$PATH:/mnt/c/Installs/bin
+PATH=$PATH:~/github/mikoforth
+PS1="\e[32m\u\e[0m:\e[34m\w\e[0m\n$ "
 export PROMPT_COMMAND="pwd > /tmp/whereami"
 
-function _update_ps1() {
-    PS1="$(powerline-go -modules user,cwd,gitlite)"
+alias kd="cd ~/Nextcloud/kokowiki"
+alias kw=./kokowiki
+kk() {
+  ./kokowiki edit "$(xsel -bo)"
 }
 
-PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-
-fd() {
-  local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf +m) &&
-  cd "$dir"
-}
-
-fvim() {
-  files=$(git ls-files) &&
-  selected_files=$(echo "$files" | fzf -m --preview 'head -100 {}') &&
-  vim $selected_files
-}
-
-fga() {
-  modified_files=$(git status --short | awk '{print $2}') &&
-  selected_files=$(echo "$modified_files" | fzf -m --preview 'git diff {}') &&
-  git add $selected_files &&
-  fga
-}
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 fshow() {
-  git log --graph --color=always \
-    --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
-  fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
-      --bind "ctrl-m:execute:
-                (grep -o '[a-f0-9]\{7\}' | head -1 |
-                xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
-                {}
-FZF-EOF"
+  local out shas sha q k
+  while out=$(
+      git log --graph --color=always \
+          --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+      fzf --ansi --multi --no-sort --reverse --query="$q" \
+          --print-query --expect=ctrl-d); do
+    q=$(head -1 <<< "$out")
+    k=$(head -2 <<< "$out" | tail -1)
+    shas=$(sed '1,2d;s/^[^a-z0-9]*//;/^$/d' <<< "$out" | awk '{print $1}')
+    [ -z "$shas" ] && continue
+    if [ "$k" = ctrl-d ]; then
+      git diff --color=always $shas | less -R
+    else
+      for sha in $shas; do
+        git show --color=always $sha | less -R
+      done
+    fi
+  done
 }

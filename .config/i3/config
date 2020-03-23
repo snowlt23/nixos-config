@@ -12,15 +12,17 @@ font pango:Hack Regular 8
 
 # Style
 for_window [class=".*"] border pixel 1
-gaps inner 7
-gaps outer 7
+gaps inner 6
+gaps outer 6
 smart_gaps on
 smart_borders on
+bindsym $mod+minus gaps inner current minus 6
+bindsym $mod+plus gaps inner current plus 6
 
 # Applications
 bindsym $mod+Return exec $HOME/nixos-config/scripts/shell.sh
-#bindsym $mod+t exec MOZ_USE_XINPUT2=1 firefox
-bindsym $mod+t exec brave
+bindsym $mod+Shift+Return exec MOZ_USE_XINPUT2=1 firefox
+#bindsym $mod+t exec firefox
 # Picture in Picture
 bindsym $mod+p exec "i3-msg 'floating toggle; sticky toggle; resize shrink width 10000px; resize grow width 384px; resize shrink height 10000px; resize grow height 216px; move position 0px 0px;'"
 

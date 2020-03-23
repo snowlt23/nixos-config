@@ -1,0 +1,38 @@
+#!/bin/sh
+
+dir=$(dirname $0)
+cmd=$1
+
+dotf() {
+    if [ "$cmd" = "clone" ] ; then
+        echo "clone from ~/$1"
+        mkdir -p "$(dirname "$1")"
+        rm -rf "$dir/$1"
+        cp -r "$HOME/$1" "$dir/$1"
+    elif [ "$cmd" = "install" ] ; then
+        echo "install to ~/$1"
+        mkdir -p "$(dirname "$1")"
+        rm -rf "$HOME/$1"
+        cp -r "$dir/$1" "$HOME/$1"
+    else
+        echo "unknown command $cmd"
+        exit 1
+    fi
+}
+
+dotf .bashrc
+dotf .bash_profile
+dotf .tmux.conf
+dotf .tridactylrc
+dotf .Xresources
+dotf .config/nvim
+dotf .config/i3
+dotf .config/compton.conf
+dotf .config/polybar
+dotf .config/ranger
+dotf .config/systemd/user/xkeysnail.service
+dotf .moc/config
+dotf .moc/keymap
+dotf .moc/eqsets
+
+chmod 644 ~/.moc/config

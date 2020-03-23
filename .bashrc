@@ -1,16 +1,27 @@
 alias vim=nvim
-alias r=ranger
-export EDITOR=nvim
-PATH=$PATH:$HOME/nixos-config/scripts
-PATH=$PATH:$HOME/private-scripts
-PATH=$PATH:$HOME/github/adhocc
-alias ns='sudo nixos-rebuild switch'
-alias hs='home-manager switch'
-alias ssh-desktop='mosh snowlt23@192.168.1.4'
+EDITOR=nvim
+WINHOME=/mnt/c/Users/shsno
+PATH=$PATH:~/private
+PATH=$PATH:~/private/scripts
+PATH=$PATH:$WINHOME/scoop/shims
+PATH=$PATH:/mnt/c/Installs/bin
+PATH=$PATH:~/github/mikoforth
+PS1="\e[32m\u\e[0m:\e[34m\w\e[0m\n$ "
 export PROMPT_COMMAND="pwd > /tmp/whereami"
 
-function _update_ps1() {
-    PS1="$(powerline-go -modules user,cwd,gitlite)"
+alias kd="cd ~/Nextcloud/kokowiki"
+kw() {
+  CURR=$(pwd)
+  kd
+  ./kokowiki "$@"
+  cd "$CURR"
+}
+kk() {
+  kw edit "$(xsel -bo)"
+}
+ki() {
+  FILE=$(dirname "$1")/$(basename "$1")
+  kw image "$FILE"
 }
 
-PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
