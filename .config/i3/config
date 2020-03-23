@@ -28,9 +28,9 @@ bindsym $mod+p exec "i3-msg 'floating toggle; sticky toggle; resize shrink width
 
 bindsym $mod+q kill
 # Desktop screenshot
-bindsym Print exec "flameshot full -p ~/Pictures"
-# Choose window
-bindsym $mod+Print exec "flameshot gui -p ~/Pictures"
+bindsym --release Print exec "scrot -e 'mv $f ~/Pictures/Screenshots'"
+bindsym --release Shift+Print exec "scrot -s -e 'mv $f ~/Pictures/Screenshots/'"
+bindsym --release $mod+Print exec "scrot -u -e 'mv $f ~/Pictures/Screenshots/'"
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec ~/nixos-config/scripts/vctl.sh -i 5 && pkill -RTMIN+1 i3blocks 

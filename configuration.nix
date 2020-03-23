@@ -64,7 +64,7 @@ in
   # Package list
   environment.systemPackages = with pkgs; [
     wget xsel unar ranger fzf powerline-go
-    acpi volnoti pamixer compton feh libnotify dunst powertop moc
+    acpi volnoti pamixer compton feh libnotify dunst powertop moc scrot
     (python35.withPackages(ps: with ps; [ pip setuptools ]))
     ffmpeg vorbis-tools youtube-dl
     neovim emacs git gnumake gcc
