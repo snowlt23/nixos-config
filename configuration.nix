@@ -74,7 +74,8 @@ in
     discord
     libva vaapiVdpau
     xkeysnail
-    unstable.wineWowPackages.stable
+    unstable.wineWowPackages.stable unstable.winetricks
+    adapta-gtk-theme gnome3.adwaita-icon-theme
   ];
 
   networking.hostName = "snowlt23-pc";
@@ -137,6 +138,9 @@ in
 
   # TLP
   services.tlp.enable = true;
+  xdg.portal.enable = true;
+  # Flatpak
+  services.flatpak.enable = true;
 
   # Fonts
   fonts = {
@@ -200,7 +204,7 @@ in
 
   # steam
   users.extraUsers.snowlt23.packages = [
-    pkgs.steam
+    pkgs.steam pkgs.lutris
   ];
   hardware.opengl.driSupport32Bit = true;
   hardware.pulseaudio.support32Bit = true;

@@ -19,6 +19,8 @@ smart_borders on
 bindsym $mod+minus gaps inner current minus 6
 bindsym $mod+plus gaps inner current plus 6
 
+focus_follows_mouse no
+
 # Applications
 bindsym $mod+Return exec $HOME/nixos-config/scripts/shell.sh
 bindsym $mod+Shift+Return exec MOZ_USE_XINPUT2=1 firefox
@@ -76,6 +78,7 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 # toggle tiling / floating
 bindsym $mod+Shift+f floating toggle
+floating_modifier $mod
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+t layout toggle tabbed stacking splith splitv
