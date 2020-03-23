@@ -66,7 +66,7 @@ in
     wget xsel unar ranger fzf powerline-go
     acpi volnoti pamixer compton feh libnotify dunst powertop moc
     (python35.withPackages(ps: with ps; [ pip setuptools ]))
-    ffmpeg
+    ffmpeg vorbis-tools youtube-dl
     neovim emacs git gnumake gcc
     rxvt_unicode tmux mosh
     firefox tridactyl-native

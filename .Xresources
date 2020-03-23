@@ -1,5 +1,5 @@
-URxvt.font:                 xft:Hack:Regular:antialias=true:size=9
-Xterm*faceName:             xft:Hack:Regular:antialias=true:size=9
+URxvt.font:                 xft:Ricty Diminished with FiraCode:Regular:antialias=true:size=12
+Xterm*faceName:                 xft:Ricty Diminished with FiraCode:Regular:antialias=true:size=12
 XTerm*utf8:                 2
 URxvt.letterSpace:          0
 
