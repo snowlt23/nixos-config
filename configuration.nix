@@ -43,7 +43,7 @@ in
       polybar = pkgs.polybar.override {
         i3Support = true;
       };
-  #    criptext = import ./pkgs/criptext.nix;
+      emacs = pkgs.emacs.override { imagemagick = pkgs.imagemagickBig; };
       # Override bluez for a2dp bug at reconnecting.
       bluez = pkgs.stdenv.lib.overrideDerivation pkgs.bluez (oldAttrs: {
         name = "bluez-git";
@@ -66,7 +66,7 @@ in
     wget xsel unar ranger fzf powerline-go
     acpi volnoti pamixer compton feh libnotify dunst powertop moc scrot
     (python35.withPackages(ps: with ps; [ pip setuptools ]))
-    ffmpeg vorbis-tools youtube-dl
+    ffmpeg imagemagick vorbis-tools youtube-dl
     neovim emacs git gnumake gcc
     rxvt_unicode tmux mosh
     firefox tridactyl-native
