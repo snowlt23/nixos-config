@@ -70,6 +70,7 @@ in
     neovim emacs git gnumake gcc
     rxvt_unicode tmux mosh
     firefox tridactyl-native
+    nextcloud-client
     discord
     libva vaapiVdpau
     xkeysnail
@@ -139,6 +140,7 @@ in
       source-serif-pro
       hack-font
       ipafont
+      rictydiminished-with-firacode
     ];
 
     fontconfig = { 
