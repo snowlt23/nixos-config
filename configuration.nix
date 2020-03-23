@@ -38,6 +38,7 @@ in
   # Packages
   nixpkgs.config = {
     allowUnfree = true;
+    firefox.enableTridactylNative = true;
     packageOverrides = pkgs: rec {
       polybar = pkgs.polybar.override {
         i3Support = true;
@@ -63,12 +64,12 @@ in
   # Package list
   environment.systemPackages = with pkgs; [
     wget xsel unar ranger fzf powerline-go
-    albert acpi volnoti pamixer compton feh libnotify dunst powertop
+    acpi volnoti pamixer compton feh libnotify dunst powertop moc
     (python35.withPackages(ps: with ps; [ pip setuptools ]))
     ffmpeg
     neovim emacs git gnumake gcc
     rxvt_unicode tmux mosh
-    firefox
+    firefox tridactyl-native
     discord
     libva vaapiVdpau
     xkeysnail

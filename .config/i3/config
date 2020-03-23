@@ -38,7 +38,9 @@ bindsym XF86AudioLowerVolume exec ~/nixos-config/scripts/vctl.sh -d 5 && pkill -
 bindsym XF86AudioMute exec ~/nixos-config/scripts/vctl.sh -t && pkill -RTMIN+1 i3blocks 
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec rofi -show drun
+bindsym $mod+Shift+d exec rofi -show run
+bindsym $mod+Ctrl+d exec rofi -show window
 
 # change focus
 bindsym $mod+h focus left
@@ -72,14 +74,11 @@ bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
+# toggle tiling / floating
+bindsym $mod+Shift+f floating toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+t layout toggle tabbed stacking splith splitv
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -182,3 +181,7 @@ client.unfocused        $mono0  $mono0 $purple  $red      $mono0
 #client.urgent           #900000 #900000 $twhite #900000   #900000
 #client.placeholder      #000000 #0C0C0C $twhite #000000   #0C0C0C
 client.background       #FFFFFF
+
+for_window [class="steam_app.*"] floating enable
+for_window [class="steam_proton"] floating enable
+for_window [class="*wine*"] floating enable
