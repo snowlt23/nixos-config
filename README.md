@@ -1,10 +1,10 @@
 # nixos-config (snowlt23)
 
 - WM: i3-gaps
-- Browser: Brave
+- Browser: Firefox
 - Editor: Neovim
 - Terminal: Urxvt
-- Input Method: fcitx-skk
+- Input Method: uim
 
 # Installation
 
@@ -25,6 +25,5 @@ $ cd nixos-config
 $ sudo ./system-relink.sh
 $ sudo nixos-rebuild switch
 
-$ ./user-install.sh
-$ home-manager switch
+$ ./myconfig install
 ```
