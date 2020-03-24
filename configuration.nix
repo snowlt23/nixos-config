@@ -155,18 +155,15 @@ in
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
       corefonts
-      fantasque-sans-mono
-      material-icons
-      inconsolata
-      dejavu_fonts
-      font-awesome-ttf
-      ubuntu_font_family
-      source-code-pro
-      source-sans-pro
-      source-serif-pro
-      hack-font
+      noto-fonts-cjk
       ipafont
-      rictydiminished-with-firacode
+      ubuntu_font_family
+      dejavu_fonts
+      hack-font
+      powerline-fonts
+
+      material-icons
+      font-awesome-ttf
     ];
 
     fontconfig = { 
@@ -174,17 +171,14 @@ in
         monospace = [ 
           "DejaVu Sans Mono for Powerline"
           "IPAGothic"
-          "Baekmuk Dotum"
         ];
         serif = [ 
           "DejaVu Serif"
           "IPAPMincho"
-          "Baekmuk Batang"
         ];
         sansSerif = [
           "DejaVu Sans"
           "IPAPGothic"
-          "Baekmuk Dotum"
         ];
       };
     };

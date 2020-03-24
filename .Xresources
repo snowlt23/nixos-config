@@ -1,7 +1,6 @@
-URxvt.font:                 xft:Ricty Diminished with FiraCode:Regular:antialias=true:size=12
-Xterm*faceName:                 xft:Ricty Diminished with FiraCode:Regular:antialias=true:size=12
+URxvt.font:                 xft:DejaVu Sans Mono for Powerline-11, xft:IPAGothic
 XTerm*utf8:                 2
-URxvt.letterSpace:          0
+URxvt.letterSpace:          -1
 
 ! Dracula Xresources palette
 *.foreground: #F8F8F2
