@@ -11,6 +11,7 @@
 **at NixOS install**
 ```
 # rm /mnt/etc/nixos/configuration.nix
+# cd /mnt
 # git clone https://github.com/snowlt23/nixos-config
 # cd nixos-config
 # ./system-install.sh
@@ -19,11 +20,13 @@
 
 **Setup after booting**
 ```sh
-$ cd ~/
-$ git clone https://github.com/snowlt23/nixos-config
-$ cd nixos-config
+$ cp -r /nixos-config ~/
+$ chown -R snowlt23 ~/nixos-config
+$ cd ~/nixos-config
 $ sudo ./system-relink.sh
 $ sudo nixos-rebuild switch
 
 $ ./myconfig install
+$ ./enable-xks.sh
+$ ./install-dein.sh
 ```

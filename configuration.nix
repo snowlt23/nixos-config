@@ -134,8 +134,7 @@ in
         Option        "ScrollButton" "8"
         Option        "ButtonMapping" "1 2 3 4 5 6 7 8 3"
         Option        "MiddleEmulation" "on"
-        Option        "AccelProfile" "flat"
-        Option        "AccelSpeed" "0.1"
+        Option        "AccelSpeed" "0.2"
       EndSection
     '';
 
