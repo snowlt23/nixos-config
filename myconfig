@@ -28,6 +28,7 @@ dotf .config/nvim
 dotf .config/i3
 dotf .config/compton.conf
 dotf .config/polybar
+dotf .config/dunst
 dotf .config/ranger
 dotf .config/systemd/user/xkeysnail.service
 dotf .moc/config

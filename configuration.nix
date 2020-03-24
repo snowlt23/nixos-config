@@ -6,6 +6,15 @@
 let
   unstable = import <nixos-unstable> {};
 
+  optDesktop = lst: (if (builtins.pathExists ./desktop) then
+      lst
+    else
+      []);
+  optLaptop = lst: (if (builtins.pathExists ./laptop) then
+      lst
+    else
+      []);
+
   xkeysnail = pkgs.python37Packages.buildPythonPackage {
     pname = "xkeysnail";
     version = "0.2.0";
@@ -27,9 +36,8 @@ in
   imports =
     (if (builtins.pathExists /mnt/etc/nixos/hardware-configuration.nix) then [ /mnt/etc/nixos/hardware-configuration.nix ]
      else [ /etc/nixos/hardware-configuration.nix ]) ++
-    [
-      ./laptop-configuration.nix
-    ];
+    optDesktop [./desktop-configuration.nix] ++
+    optLaptop [./laptop-configuration.nix] ;
 
   system = {
     stateVersion = "19.09";
