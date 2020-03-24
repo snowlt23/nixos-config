@@ -84,7 +84,9 @@ in
     xkeysnail
     unstable.wineWowPackages.stable unstable.winetricks
     adapta-gtk-theme gnome3.adwaita-icon-theme
-  ];
+  ] ++
+  optDesktop [ krita ] ++
+  optLaptop [ ] ;
 
   networking.hostName = "snowlt23-pc";
   networking.networkmanager.enable = true;
