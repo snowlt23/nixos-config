@@ -23,10 +23,8 @@ focus_follows_mouse no
 
 # Applications
 bindsym $mod+Return exec $HOME/nixos-config/scripts/shell.sh
-bindsym $mod+Shift+Return exec MOZ_USE_XINPUT2=1 firefox
-#bindsym $mod+t exec firefox
-# Picture in Picture
-bindsym $mod+p exec "i3-msg 'floating toggle; sticky toggle; resize shrink width 10000px; resize grow width 384px; resize shrink height 10000px; resize grow height 216px; move position 0px 0px;'"
+#bindsym $mod+Shift+Return exec MOZ_USE_XINPUT2=1 firefox
+bindsym $mod+Shift+Return exec brave
 
 bindsym $mod+q kill
 # Desktop screenshot
@@ -40,15 +38,15 @@ bindsym XF86AudioLowerVolume exec ~/nixos-config/scripts/vctl.sh -d 5 && pkill -
 bindsym XF86AudioMute exec ~/nixos-config/scripts/vctl.sh -t && pkill -RTMIN+1 i3blocks 
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec rofi -show drun -theme ~/nixos-config/slate.rasi
-bindsym $mod+Shift+d exec rofi -show run -theme ~/nixos-config/slate.rasi
-bindsym $mod+Ctrl+d exec rofi -show window -theme ~/nixos-config/slate.rasi
+bindsym $mod+e exec rofi -show drun -theme ~/nixos-config/slate.rasi
+bindsym $mod+Shift+e exec rofi -show run -theme ~/nixos-config/slate.rasi
+bindsym $mod+Ctrl+e exec rofi -show window -theme ~/nixos-config/slate.rasi
 
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $mod+d focus left
+bindsym $mod+h focus down
+bindsym $mod+t focus up
+bindsym $mod+n focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -57,10 +55,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+d move left
+bindsym $mod+Shift+h move down
+bindsym $mod+Shift+t move up
+bindsym $mod+Shift+n move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -70,7 +68,6 @@ bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+g split h
-
 # split in vertical orientation
 bindsym $mod+v split v
 
@@ -81,7 +78,7 @@ bindsym $mod+Shift+f floating toggle
 floating_modifier $mod
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+t layout toggle tabbed stacking splith splitv
+bindsym $mod+y layout toggle tabbed stacking splith splitv
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -134,7 +131,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

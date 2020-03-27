@@ -69,7 +69,7 @@ in
     ffmpeg imagemagick vorbis-tools youtube-dl
     neovim emacs git gnumake gcc
     rxvt_unicode tmux mosh
-    firefox tridactyl-native
+    brave
     nextcloud-client
     discord
     libva vaapiVdpau
@@ -96,7 +96,8 @@ in
   services.xserver = {
     enable = true;
 
-    layout = "us,ua";
+    layout = "us";
+    xkbVariant = "dvorak";
     xkbOptions = "caps:escape";
 
     desktopManager = {

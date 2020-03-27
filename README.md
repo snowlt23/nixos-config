@@ -1,8 +1,8 @@
 # nixos-config (snowlt23)
 
 - WM: i3-gaps
-- Browser: Firefox
-- Editor: Neovim
+- Browser: Brave
+- Editor: Emacs
 - Terminal: Urxvt
 - Input Method: uim
 
@@ -11,6 +11,7 @@
 **at NixOS install**
 ```
 # rm /mnt/etc/nixos/configuration.nix
+# cd /mnt
 # git clone https://github.com/snowlt23/nixos-config
 # cd nixos-config
 # ./system-install.sh

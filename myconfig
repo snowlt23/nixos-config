@@ -24,6 +24,7 @@ dotf .bashrc
 dotf .tmux.conf
 dotf .tridactylrc
 dotf .Xresources
+dotf .uim
 dotf .config/nvim
 dotf .config/i3
 dotf .config/compton.conf
