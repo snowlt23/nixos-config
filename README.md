@@ -14,6 +14,7 @@
 # cd /mnt
 # git clone https://github.com/snowlt23/nixos-config
 # cd nixos-config
+# touch desktop|laptop
 # ./system-install.sh
 # nixos-install
 ```
