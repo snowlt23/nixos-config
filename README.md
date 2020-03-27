@@ -1,7 +1,7 @@
 # nixos-config (snowlt23)
 
 - WM: i3-gaps
-- Browser: Brave
+- Browser: Firefox
 - Editor: Emacs
 - Terminal: Urxvt
 - Input Method: uim

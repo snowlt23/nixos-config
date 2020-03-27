@@ -80,7 +80,7 @@ in
     ffmpeg imagemagick vorbis-tools youtube-dl
     neovim emacs git gnumake gcc
     rxvt_unicode tmux mosh
-    brave
+    firefox
     unstable.nextcloud-client
     discord
     libva vaapiVdpau
