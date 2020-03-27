@@ -5,8 +5,8 @@ bind H scrollline 50
 bind D back
 bind N forward
 bind <C-u> undo
-bind o open
-bind O tabopen
+bind o fillcmdline open
+bind O fillcmdline tabopen
 unbind d
 unbind u
 
