@@ -73,7 +73,7 @@ in
     neovim emacs git gnumake gcc
     rxvt_unicode tmux mosh
     brave
-    nextcloud-client
+    unstable.nextcloud-client
     discord
     libva vaapiVdpau
     xkeysnail
@@ -137,6 +137,7 @@ in
 
     displayManager.sessionCommands = ''
       feh --bg-center /home/snowlt23/Pictures/wallpaper.png &
+      nextcloud &
     '';
   };
 
@@ -145,6 +146,8 @@ in
   xdg.portal.enable = true;
   # Flatpak
   services.flatpak.enable = true;
+  # Gnome keyring
+  services.gnome3.gnome-keyring.enable = true;
 
   # Fonts
   fonts = {
