@@ -44,6 +44,9 @@ in
         i3Support = true;
       };
       emacs = pkgs.emacs.override { imagemagick = pkgs.imagemagickBig; };
+      uim = pkgs.stdenv.lib.overrideDerivation pkgs.uim (oldAttrs: {
+        patches = oldAttrs.patches ++ [ ./skk.scm.patch ];
+      });
       # Override bluez for a2dp bug at reconnecting.
       bluez = pkgs.stdenv.lib.overrideDerivation pkgs.bluez (oldAttrs: {
         name = "bluez-git";

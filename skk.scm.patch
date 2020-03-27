@@ -1,0 +1,20 @@
+--- a/scm/skk.scm	2020-03-27 20:57:47.890017727 +0900
++++ b/scm/skk.scm	2020-03-27 21:16:55.918367692 +0900
+@@ -60,7 +60,7 @@
+ (define skk-uim-heading-label-char-list '("1" "2" "3" "4" "5" "6" "7" "8" "9" "0"))
+ 
+ (define skk-ja-rk-rule (append ja-rk-rule-basic ja-rk-rule-additional))
+-(define skk-okuri-char-alist '())
++(define skk-okuri-char-alist '(("c" . "k")))
+ (define skk-downcase-alist '())
+ (define skk-set-henkan-point-key '())
+ 
+@@ -371,7 +371,7 @@
+     (let ((rkc (skk-context-rk-context sc))
+ 	  (rule (cond
+ 		 ((= input-rule skk-input-rule-roma)
+-                  (set! skk-okuri-char-alist '())
++                  (set! skk-okuri-char-alist '(("c" . "k")))
+                   (set! skk-downcase-alist '()) 
+                   (set! skk-set-henkan-point-key '())
+ 		  skk-ja-rk-rule)
