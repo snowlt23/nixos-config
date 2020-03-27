@@ -23,8 +23,8 @@ focus_follows_mouse no
 
 # Applications
 bindsym $mod+Return exec $HOME/nixos-config/scripts/shell.sh
-#bindsym $mod+Shift+Return exec MOZ_USE_XINPUT2=1 firefox
-bindsym $mod+Shift+Return exec brave
+bindsym $mod+Shift+Return exec MOZ_USE_XINPUT2=1 firefox
+#bindsym $mod+Shift+Return exec brave
 
 bindsym $mod+q kill
 # Desktop screenshot

@@ -66,10 +66,10 @@ quit                  = Q
 
 # Menu and interface control keys:
 go                    = ENTER
-menu_down             = DOWN j
-menu_up               = UP k
-menu_page_down        = PAGE_DOWN ^d
-menu_page_up          = PAGE_UP ^u
+menu_down             = DOWN h
+menu_up               = UP t
+menu_page_down        = PAGE_DOWN ^e
+menu_page_up          = PAGE_UP ^g
 menu_first_item       = HOME
 menu_last_item        = END
 search_menu           = g /
@@ -78,7 +78,7 @@ search_menu           = g /
 #toggle_show_format    = ^f
 toggle_menu           = TAB
 #toggle_layout         = l
-#toggle_hidden_files   = H
+#toggle_hidden_H   = files
 #show_lyrics           = L
 theme_menu            = T
 help                  = ?
@@ -88,12 +88,12 @@ reload                = r
 # Audio playing and positioning keys:
 seek_forward          = RIGHT
 seek_backward         = LEFT
-seek_forward_fast     = ] L
-seek_backward_fast    = [ H
+seek_forward_fast     = ] N
+seek_backward_fast    = [ D
 pause                 = p SPACE
 stop                  = s
-next                  = l
-previous              = h
+next                  = n
+previous              = d
 toggle_shuffle        = S
 toggle_repeat         = R
 toggle_auto_next      = X
@@ -136,10 +136,10 @@ go_up                 = U
 add_file              = a
 add_directory         = A
 #plist_add_stream      = ^u
-delete_from_playlist  = d
+delete_from_playlist  = e
 playlist_full_paths   = P
-plist_move_up         = K
-plist_move_down       = J
+#plist_move_up         = K
+#plist_move_down       = e
 save_playlist         = V
 remove_dead_entries   = Y
 clear_playlist        = C
@@ -162,7 +162,7 @@ hide_message          = M
 
 # Equalizer specific keys:
 toggle_equalizer      = E
-equalizer_refresh     = e
+#equalizer_refresh     = e
 equalizer_prev        = I
 equalizer_next        = O
 
