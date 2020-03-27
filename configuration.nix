@@ -6,6 +6,15 @@
 let
   unstable = import <nixos-unstable> {};
 
+  optDesktop = lst: (if (builtins.pathExists ./desktop) then
+      lst
+    else
+      []);
+  optLaptop = lst: (if (builtins.pathExists ./laptop) then
+      lst
+    else
+      []);
+
   xkeysnail = pkgs.python37Packages.buildPythonPackage {
     pname = "xkeysnail";
     version = "0.2.0";
@@ -27,9 +36,8 @@ in
   imports =
     (if (builtins.pathExists /mnt/etc/nixos/hardware-configuration.nix) then [ /mnt/etc/nixos/hardware-configuration.nix ]
      else [ /etc/nixos/hardware-configuration.nix ]) ++
-    [
-      ./laptop-configuration.nix
-    ];
+    optDesktop [./desktop-configuration.nix] ++
+    optLaptop [./laptop-configuration.nix] ;
 
   system = {
     stateVersion = "19.09";
@@ -79,7 +87,9 @@ in
     xkeysnail
     unstable.wineWowPackages.stable unstable.winetricks
     adapta-gtk-theme gnome3.adwaita-icon-theme
-  ];
+  ] ++
+  optDesktop [ krita ] ++
+  optLaptop [ ] ;
 
   networking.hostName = "snowlt23-pc";
   networking.networkmanager.enable = true;
@@ -130,8 +140,7 @@ in
         Option        "ScrollButton" "8"
         Option        "ButtonMapping" "1 2 3 4 5 6 7 8 3"
         Option        "MiddleEmulation" "on"
-        Option        "AccelProfile" "flat"
-        Option        "AccelSpeed" "0.1"
+        Option        "AccelSpeed" "-1.0"
       EndSection
     '';
 
@@ -155,18 +164,15 @@ in
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
       corefonts
-      fantasque-sans-mono
-      material-icons
-      inconsolata
-      dejavu_fonts
-      font-awesome-ttf
-      ubuntu_font_family
-      source-code-pro
-      source-sans-pro
-      source-serif-pro
-      hack-font
+      noto-fonts-cjk
       ipafont
-      rictydiminished-with-firacode
+      ubuntu_font_family
+      dejavu_fonts
+      hack-font
+      powerline-fonts
+
+      material-icons
+      font-awesome-ttf
     ];
 
     fontconfig = { 
@@ -174,17 +180,14 @@ in
         monospace = [ 
           "DejaVu Sans Mono for Powerline"
           "IPAGothic"
-          "Baekmuk Dotum"
         ];
         serif = [ 
           "DejaVu Serif"
           "IPAPMincho"
-          "Baekmuk Batang"
         ];
         sansSerif = [
           "DejaVu Sans"
           "IPAPGothic"
-          "Baekmuk Dotum"
         ];
       };
     };
