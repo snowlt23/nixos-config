@@ -1,7 +1,6 @@
 alias ns="sudo nixos-rebuild switch"
 alias l=ls
 alias em="emacs -nw"
-alias vim=nvim
 EDITOR="emacs -nw"
 PATH=$PATH:~/nixos-config
 PATH=$PATH:~/nixos-config/scripts
