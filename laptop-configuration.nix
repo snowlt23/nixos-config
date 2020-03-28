@@ -1,6 +1,9 @@
 
 { config, pkgs, ... }:
 
+let
+  unstable = import <nixos-unstable> {};
+in
 {
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -8,6 +11,7 @@
 
   # Bluetooth
   hardware.bluetooth.enable = true;
+  hardware.bluetooth.package = unstable.bluez;
   hardware.bluetooth.extraConfig = "
     [General]
     Enable=Source,Sink,Control,Media,Socket
