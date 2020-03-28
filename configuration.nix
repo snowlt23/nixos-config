@@ -79,7 +79,7 @@ in
 
   # Package list
   environment.systemPackages = with pkgs; [
-    wget xsel unar ranger fzf powerline-go
+    wget xsel unar ranger fzf powerline-go xdotool
     acpi volnoti pamixer pavucontrol compton feh libnotify dunst powertop moc scrot
     (python35.withPackages(ps: with ps; [ pip setuptools ]))
     ffmpeg imagemagick vorbis-tools youtube-dl
@@ -103,11 +103,7 @@ in
   #networking.wireless.enable = true;
 
   # Select internationalisation properties.
-  i18n = {
-    consoleFont = "Lat2-Terminus16";
-    consoleUseXkbConfig = true;
-    defaultLocale = "ja_JP.UTF-8";
-  };
+  i18n.consoleKeyMap = "dvorak";
 
   # Set your time zone.
   time.timeZone = "Asia/Tokyo";

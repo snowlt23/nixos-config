@@ -5,10 +5,10 @@ key() {
   sleep 0.5
 }
 
-rxvt-unicode -cd "$(pwd)" &
+urxvt -cd "$(pwd)" &
 sleep 0.5
-key Super_L+BackSpace
-rxvt-unicode -cd "$(pwd)" &
+key Super_L+g
+urxvt -cd "$(pwd)" &
 key Super_L+r
-key h
+key d
 key Escape
