@@ -148,6 +148,7 @@ in
     '';
 
     displayManager.sessionCommands = ''
+      setxkbmap dvorak
       feh --bg-center /home/snowlt23/Pictures/wallpaper.png &
       nextcloud &
     '';

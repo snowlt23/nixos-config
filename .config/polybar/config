@@ -16,7 +16,6 @@ margin-top = 5
 margin-bottom = 5
 
 [bar/main]
-;monitor = DVI-D-0
 monitor = DP-2
 monitor-fallback = eDP-1
 bottom = true
