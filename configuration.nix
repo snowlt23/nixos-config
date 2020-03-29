@@ -57,23 +57,6 @@ in
       uim = pkgs.stdenv.lib.overrideDerivation pkgs.uim (oldAttrs: {
         patches = oldAttrs.patches ++ [ ./skk.scm.patch ];
       });
-      # Override bluez for a2dp bug at reconnecting.
-      bluez = (if isLaptop then
-        pkgs.stdenv.lib.overrideDerivation pkgs.bluez (oldAttrs: {
-          name = "bluez-git";
-          src = pkgs.fetchgit {
-            url = git://git.kernel.org/pub/scm/bluetooth/bluez.git;
-            rev = "b6960209ee3e0166353060deb38eb7827a092ed3";
-            sha256 = "1llz9imdws5fkfwj7h7awncwmaax0zl58lkmil7s9b7w0191273j";
-          };
-          buildInputs = oldAttrs.buildInputs ++ [ pkgs.automake pkgs.autoconf pkgs.libtool ];
-          patches = [];
-          preConfigure = ''
-            ./bootstrap
-          '';
-        })
-      else
-        pkgs.bluez);
     };
   };
 
