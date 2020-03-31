@@ -85,9 +85,6 @@ in
   networking.networkmanager.enable = true;
   #networking.wireless.enable = true;
 
-  # Select internationalisation properties.
-  i18n.consoleKeyMap = "dvorak";
-
   # Set your time zone.
   time.timeZone = "Asia/Tokyo";
 
@@ -96,7 +93,6 @@ in
     enable = true;
 
     layout = "us";
-    xkbVariant = "dvorak";
     xkbOptions = "caps:escape";
 
     desktopManager = {
@@ -131,11 +127,11 @@ in
     '';
 
     displayManager.sessionCommands = ''
-      setxkbmap dvorak
       feh --bg-center /home/snowlt23/Pictures/wallpaper.png &
       nextcloud &
     '';
   };
+  services.xserver.videoDrivers = [ "amdgpu" ];
 
   # TLP
   services.tlp.enable = true;
