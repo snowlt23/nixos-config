@@ -6,6 +6,10 @@ let
 in
 {
   boot.kernelPackages = unstable.linuxPackages_5_4;
+  boot.kernelParams = [
+    "ivrs_ioapic[4]=00:14.0"
+    "ivrs_ioapic[5]=00:00.2"
+  ];
   # Use the systemd-boot EFI boot loader.
   #boot.loader.systemd-boot.enable = true;
   #boot.loader.efi.canTouchEfiVariables = true;
