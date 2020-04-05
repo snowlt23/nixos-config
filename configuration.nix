@@ -16,6 +16,10 @@ let
       lst
     else
       []);
+  optsLaptop = s: (if isLaptop then
+      s
+    else
+      "");
 
   xkeysnail = pkgs.python37Packages.buildPythonPackage {
     pname = "xkeysnail";
@@ -129,9 +133,10 @@ in
     displayManager.sessionCommands = ''
       feh --bg-center /home/snowlt23/Pictures/wallpaper.png &
       nextcloud &
+    '' + optsLaptop ''
+      setxkbmap dvorak
     '';
   };
-  services.xserver.videoDrivers = [ "amdgpu" ];
 
   # TLP
   services.tlp.enable = true;
@@ -197,7 +202,8 @@ in
 
   # steam
   users.extraUsers.snowlt23.packages = [
-    pkgs.steam pkgs.lutris
+    unstable.steam
+    unstable.steam-run
   ];
   hardware.opengl.driSupport32Bit = true;
   hardware.pulseaudio.support32Bit = true;

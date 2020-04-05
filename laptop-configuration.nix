@@ -9,6 +9,8 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  services.xserver.xkbVariant = "dvorak";
+
   # Bluetooth
   hardware.bluetooth.enable = true;
   hardware.bluetooth.package = unstable.bluez;
