@@ -73,7 +73,7 @@ in
     discord
     libva vaapiVdpau
     xkeysnail
-    unstable.wineWowPackages.stable unstable.winetricks
+    unstable.wineStable unstable.winetricks
     adapta-gtk-theme gnome3.adwaita-icon-theme
 
     vulkan-loader vulkan-tools
@@ -197,8 +197,7 @@ in
 
   # steam
   users.extraUsers.snowlt23.packages = with pkgs; [
-    unstable.steam
-    unstable.steam-run
+    unstable.steam unstable.steam-run lutris
   ];
   hardware.opengl.driSupport32Bit = true;
   hardware.pulseaudio.support32Bit = true;
