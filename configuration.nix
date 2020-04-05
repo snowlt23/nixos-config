@@ -16,6 +16,10 @@ let
       lst
     else
       []);
+  optsLaptop = s: (if isLaptop then
+      s
+    else
+      "");
 
   xkeysnail = pkgs.python37Packages.buildPythonPackage {
     pname = "xkeysnail";
@@ -129,9 +133,10 @@ in
     displayManager.sessionCommands = ''
       feh --bg-center /home/snowlt23/Pictures/wallpaper.png &
       nextcloud &
+    '' + optsLaptop ''
+      setxkbmap dvorak
     '';
   };
-  services.xserver.videoDrivers = [ "amdgpu" ];
 
   # TLP
   services.tlp.enable = true;
