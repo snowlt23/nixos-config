@@ -12,3 +12,9 @@ urxvt -cd "$(pwd)" &
 key Super_L+r
 key d
 key Escape
+key Super_L+d
+key Super_L+g
+urxvt -cd "$(pwd)" &
+sleep 0.5
+key Super_L+y
+key Super_L+y
