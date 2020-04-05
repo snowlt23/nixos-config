@@ -201,9 +201,8 @@ in
   boot.kernelModules = [ "uinput" ];
 
   # steam
-  users.extraUsers.snowlt23.packages = [
-    unstable.steam
-    unstable.steam-run
+  users.extraUsers.snowlt23.packages = with pkgs; [
+    unstable.steam unstable.steam-run
   ];
   hardware.opengl.driSupport32Bit = true;
   hardware.pulseaudio.support32Bit = true;
