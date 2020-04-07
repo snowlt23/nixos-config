@@ -77,7 +77,7 @@ in
     discord
     libva vaapiVdpau
     xkeysnail
-    unstable.wineStable unstable.winetricks
+    unstable.wineWowPackages.staging unstable.winetricks
     adapta-gtk-theme gnome3.adwaita-icon-theme
 
     vulkan-loader vulkan-tools
@@ -189,7 +189,8 @@ in
     extraGroups = [ "wheel" "i2c" "input" ];
   };
 
-  # input method for JP
+  # Japanese
+  i18n.defaultLocale = "ja_JP.UTF-8";
   i18n.inputMethod = {
     enabled  = "uim";
   };

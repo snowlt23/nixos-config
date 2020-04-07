@@ -10,5 +10,5 @@ bind O fillcmdline tabopen
 unbind d
 unbind u
 
-bind B js var a=window,b=document,c=encodeURIComponent,e=c(document.title),d=a.open('https://osnn.myddns.me/nextcloud/index.php/apps/bookmarks/bookmarklet?url='+c(b.location)+'&title='+e,'bkmk_popup','left='+((a.screenX||a.screenLeft)+10)+',top='+((a.screenY||a.screenTop)+10)+',height=500px,width=550px,resizable=1,alwaysRaised=1');a.setTimeout(function(){d.focus()},300);
+bind B js var a=window,b=document,c=encodeURIComponent,e=c(document.title),d=a.open('https://osnn.myddns.me/nextcloud/index.php/apps/bookmarks/bookmarklet?url='+c(b.location)+'&title='+e);a.setTimeout(function(){d.focus()},300);
 bind <C-y> composite js `[[${location.href}][${document.title}]]` | yank
